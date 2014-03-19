@@ -1,6 +1,7 @@
 #include "SFML_STATIC.h"
 #include "Engine.h"
 using namespace GaltEngine;
+using std::vector;
 
 Engine::~Engine()
 {
@@ -40,6 +41,11 @@ void Engine::runGame()
 
 		//clear the window and prep for new frame
 		window.clear(sf::Color::Green);
+
+		//update the sprites
+
+		//now draw sprites
+		window.draw(sprites[0]);
 
 		//start the new frame
 		window.display();

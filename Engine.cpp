@@ -40,12 +40,13 @@ void Engine::runGame()
 		}
 
 		//clear the window and prep for new frame
-		window.clear(sf::Color::Green);
+		window.clear(sf::Color::Blue);
 
 		//update the sprites
+		sprites[0].newPosition(30, 40);
 
 		//now draw sprites
-		window.draw(sprites[0]);
+		window.draw(sprites[0].getSprite());
 
 		//start the new frame
 		window.display();

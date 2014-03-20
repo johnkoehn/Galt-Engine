@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "Sprite.h"
 
 namespace GaltEngine
 {
@@ -18,8 +19,8 @@ namespace GaltEngine
 		//vector containing the various textures (data will eventually be moved into a different class)
 		std::vector<sf::Texture> textures; 
 
-		//vector containg all the sprite (data will eventually be moved into a different class)
-		std::vector<sf::Sprite> sprites;
+		//vector containg all the sprite (need to update to linked list)
+		std::vector<Sprite> sprites;
 
 	public:
 		Engine(int fwidth = 800, int fheight = 600, std::string ftitle = "Default") : window(sf::VideoMode(fwidth, fheight), ftitle)
@@ -38,8 +39,7 @@ namespace GaltEngine
 			textures.push_back(newTexture);
 
 			//now we can create the sprite
-			sf::Sprite newSprite;
-			newSprite.setTexture(textures[0]);
+			Sprite newSprite(30.0, 40.0, 90.0, 180.0, textures[0]);
 			sprites.push_back(newSprite);
 		};
 		~Engine();

@@ -30,7 +30,7 @@ namespace GaltEngine
 		*tiles is an array of integers repersenting the map
 		*width and height are the map width and height in tiles
 		***/
-		bool load(const std::string& tilesetFile, sf::Vector2u tileSize, const int* tiles, unsigned int width, unsigned int height);
+		bool load(const std::string& tilesetFile, sf::Vector2u tileSize, const std::vector<int>& tiles, unsigned int width, unsigned int height);
 
 	};
 }

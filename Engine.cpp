@@ -25,25 +25,6 @@ std::string Engine::getTitle()
 
 void Engine::runGame()
 {
-	/***
-	*TEST CODE
-	***/
-	const int level[] =
-	{
-		0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-		0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0,
-		1, 1, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3,
-		0, 1, 0, 0, 2, 0, 3, 3, 3, 0, 1, 1, 1, 0, 0, 0,
-		0, 1, 1, 0, 3, 3, 3, 0, 0, 0, 1, 1, 1, 2, 0, 0,
-		0, 0, 1, 0, 3, 0, 2, 2, 0, 0, 1, 1, 1, 1, 2, 0,
-		2, 0, 1, 0, 3, 0, 2, 2, 2, 0, 1, 1, 1, 1, 1, 1,
-		0, 0, 1, 0, 3, 2, 2, 2, 0, 0, 0, 0, 1, 1, 1, 1,
-	};
-
-	Map map;
-	if (!map.load("tileset1.png", sf::Vector2u(32, 32), level, 16, 8))
-		return;
-
 	//loop runs constantly
 	while (window.isOpen())
 	{
@@ -74,4 +55,47 @@ void Engine::runGame()
 		//start the new frame
 		window.display();
 	}
+}
+
+bool Engine::createMap(std::string mapFile, std::string tileFile)
+{
+	//create a vector to hold the integers representing the map
+	std::vector<int> level;
+
+	if (!readLevel(mapFile, level))
+	{
+		std::cerr << "Invaild file!\n";
+		return false;
+	}
+
+	//caclulate the map width and height in tiles (I'll figure this out later)
+	int mapWidth = 23; //winWidth / tileWidth;
+	int mapHeight = 16; // winHeight / tileHeight;
+
+	//now create the map
+	map.load(tileFile, sf::Vector2u(tileWidth, tileHeight), level, mapWidth, mapHeight);
+
+	return true;
+}
+
+bool Engine::readLevel(std::string mapFile, std::vector<int>& level)
+{
+	ifstream indata;
+	indata.open(mapFile);
+
+	if (!indata)
+	{
+		return false;
+	}
+
+	//read the text file for all the integers
+	int readInt;
+	while (!indata.eof())
+	{
+		indata >> readInt;
+		level.push_back(readInt);
+	}
+
+	indata.close();
+	return true;
 }

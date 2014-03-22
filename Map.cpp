@@ -2,7 +2,7 @@
 
 using namespace GaltEngine;
 
-bool Map::load(const std::string& tilesetFile, sf::Vector2u tileSize, const int* tiles, unsigned int width, unsigned int height)
+bool Map::load(const std::string& tilesetFile, sf::Vector2u tileSize, const std::vector<int>& tiles, unsigned int width, unsigned int height)
 {
 	//load the texture for the map
 	if (!m_tileset.loadFromFile(tilesetFile))

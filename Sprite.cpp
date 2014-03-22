@@ -10,6 +10,7 @@ Sprite::Sprite(double fxPos, double fyPos, double fwidth, double fheight, const 
 
 	//set the sprite with the new texture
 	sprite.setTexture(texture);
+	sprite.setPosition(sf::Vector2f(xPos, yPos));
 }
 
 Sprite::~Sprite()

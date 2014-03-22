@@ -39,6 +39,12 @@ namespace GaltEngine
 		void newPosition(double newX, double newY);
 		void newX(double newX);
 		void newY(double newY);
+		
+		/***
+		*Features to add:
+		*Scale
+		*Animation
+		***/
 
 
 	};

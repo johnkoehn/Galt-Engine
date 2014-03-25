@@ -1,4 +1,3 @@
-#include "SFML_STATIC.h"
 #include "Engine.h"
 using namespace GaltEngine;
 using std::vector;
@@ -62,6 +61,7 @@ void Engine::runGame()
 		window.draw(map);
 
 		//update the sprites
+		checkKeyInput();
 		
 		//disable window to be passed to another thread
 		window.setActive(false);
@@ -127,4 +127,32 @@ bool Engine::readLevel(std::string mapFile, std::vector<int>& level)
 
 	indata.close();
 	return true;
+}
+
+/****************************************************
+*Keyboard input can only move the player in the Engine
+*Player is always repersented by the first sprite
+*****************************************************/
+void Engine::checkKeyInput()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
+		//move player up
+		sManager.updatePosition(1, 0, -.01);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		//move player down
+		sManager.updatePosition(1, 0, .01);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		//move player right
+		sManager.updatePosition(1, 0.01, 0);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		//move player left
+		sManager.updatePosition(1, -0.01, 0);
+	}
 }

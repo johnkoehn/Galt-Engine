@@ -18,11 +18,12 @@ namespace GaltEngine
 		TextureManager textureManager;
 
 		bool readFile(std::string filename);
+		//sf::Sprite findSprite(int spriteID); Need to look into how to make this function
 
 	public:
 		SpriteManager(std::string filename, std::string texturesFile);
 		void add(Sprite newSprite);
-		//void update(); will work on later
+		void updatePosition(int spriteID, double deltaX, double deltaY);
 		void displaySprites(sf::RenderWindow& window);
 
 

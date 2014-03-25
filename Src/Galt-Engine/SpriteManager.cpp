@@ -12,8 +12,8 @@ SpriteManager::SpriteManager(std::string filename, std::string texturesFile) : t
 
 /*****************************************************
 *Text file contains the sprite information. Cotains
-*the following information: the texture id, position
-*(x,y) coordinates and size (width, height) of the
+*the following information: the texture id, sprite ID,
+*position(x,y) coordinates and size (width, height) of the
 *sprite
 ******************************************************/
 
@@ -31,6 +31,7 @@ bool SpriteManager::readFile(std::string filename)
 	}
 
 	int textureID;
+	int spriteID;
 	double xPos;
 	double yPos;
 	double width;
@@ -39,13 +40,14 @@ bool SpriteManager::readFile(std::string filename)
 	while (!spriteFile.eof())
 	{
 		spriteFile >> textureID;
+		spriteFile >> spriteID;
 		spriteFile >> xPos;
 		spriteFile >> yPos;
 		spriteFile >> width;
 		spriteFile >> height;
 
 		//create sprite and push it to the list
-		Sprite tempSprite(xPos, yPos, width, height, textureManager.findTexture(textureID));
+		Sprite tempSprite(xPos, yPos, width, height, textureManager.findTexture(textureID), spriteID);
 		sprites.push_back(tempSprite);
 	}
 	return true;
@@ -66,3 +68,32 @@ void SpriteManager::displaySprites(sf::RenderWindow& window)
 		window.draw((*i).getSprite());
 	}
 }
+
+void SpriteManager::updatePosition(int spriteID, double deltaX, double deltaY)
+{
+	list<Sprite>::iterator i;
+
+	//find the sprite
+	for (i = sprites.begin(); i != sprites.end(); ++i)
+	{
+		if (spriteID == (*i).getID())
+		{
+			(*i).updatePosition(deltaX, deltaY);
+		}
+	}
+
+}
+
+//function iteriates throught the list and returns the address to the sprite
+/*sf::Sprite SpriteManager::findSprite(int spriteID)
+{
+	list<Sprite>::iterator i;
+
+	for (i = sprites.begin(); i != sprites.end(); ++i)
+	{
+		if (spriteID == (*i).getID())
+		{
+			return *i;
+		}
+	}
+} */

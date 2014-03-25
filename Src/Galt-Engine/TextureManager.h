@@ -1,7 +1,7 @@
 #ifndef TEXTUREMANAGER_H
 #define TEXTUREMANAGER_H
 
-#include <SFML/Graphics.hpp>
+#include <SFML\Graphics.hpp>
 #include <iostream>
 #include <fstream>
 #include <vector>

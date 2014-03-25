@@ -15,6 +15,9 @@ namespace GaltEngine
 		double width;
 		double height;
 
+		//sprites contain IDs to keep track of them
+		int ID;
+
 		//sprite object for sfml
 		sf::Sprite sprite;
 
@@ -26,7 +29,7 @@ namespace GaltEngine
 		***/
 
 	public:
-		Sprite(double fxPos, double fyPos, double fwidth, double fheight, const sf::Texture &texture);
+		Sprite(double fxPos, double fyPos, double fwidth, double fheight, const sf::Texture &texture, int fID);
 		~Sprite();
 
 		//mutators & accessors
@@ -34,6 +37,7 @@ namespace GaltEngine
 		double getY();
 		double getWidth();
 		double getHeight();
+		int getID();
 		sf::Sprite& getSprite();
 		void updatePosition(double changeX, double changeY);
 		void newPosition(double newX, double newY);

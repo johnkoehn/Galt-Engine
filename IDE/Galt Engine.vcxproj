@@ -12,7 +12,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Src\Galt-Engine\Engine.cpp" />
-    <ClCompile Include="..\Src\Galt-Engine\main.cpp" />
     <ClCompile Include="..\Src\Galt-Engine\Map.cpp" />
     <ClCompile Include="..\Src\Galt-Engine\Sprite.cpp" />
     <ClCompile Include="..\Src\Galt-Engine\SpriteManager.cpp" />
@@ -21,7 +20,6 @@
   <ItemGroup>
     <ClInclude Include="..\Src\Galt-Engine\Engine.h" />
     <ClInclude Include="..\Src\Galt-Engine\Map.h" />
-    <ClInclude Include="..\Src\Galt-Engine\SFML_STATIC.h" />
     <ClInclude Include="..\Src\Galt-Engine\Sprite.h" />
     <ClInclude Include="..\Src\Galt-Engine\SpriteManager.h" />
     <ClInclude Include="..\Src\Galt-Engine\TextureManager.h" />
@@ -74,7 +72,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>SFML_STATIC;WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\SFML\VS 2013\SFML-2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Axel\Documents\GitHub\Galt-Engine\Ext;C:\Users\Axel\Documents\GitHub\Galt-Engine\Ext\SFML;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>

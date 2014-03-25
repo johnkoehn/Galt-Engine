@@ -1,19 +1,5 @@
-﻿Build started 3/22/2014 10:48:32 PM.
-     1>Project "C:\Users\Axel\Desktop\Galt-Engine\IDE\Galt Engine.vcxproj" on node 2 (Build target(s)).
-     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(381,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Testbed.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\SFML\VS 2013\SFML-2.1\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D SFML_STATIC /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt "..\Src\Galt-Engine\Engine.cpp"
-         Engine.cpp
-       Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"..\Lib\Galt Engine-d.lib" /NOLOGO Debug\Engine.obj
-         Debug\main.obj
-         Debug\Map.obj
-         Debug\Sprite.obj
-         Debug\SpriteManager.obj
-         Debug\TextureManager.obj
-         Galt Engine.vcxproj -> C:\Users\Axel\Desktop\Galt-Engine\IDE\..\Lib\Galt Engine-d.lib
-     1>Done Building Project "C:\Users\Axel\Desktop\Galt-Engine\IDE\Galt Engine.vcxproj" (Build target(s)).
+﻿Build started 3/24/2014 10:28:44 PM.
 
 Build succeeded.
 
-Time Elapsed 00:00:00.59
+Time Elapsed 00:00:00.00

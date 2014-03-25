@@ -31,6 +31,7 @@ namespace GaltEngine
 
 		bool createMap(std::string mapFile, std::string tileFile);
 		bool readLevel(std::string mapFile, std::vector<int>& level);
+		void checkKeyInput();
 
 	public:
 

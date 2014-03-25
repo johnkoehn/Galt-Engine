@@ -1,12 +1,13 @@
 #include "Sprite.h"
 using namespace GaltEngine;
 
-Sprite::Sprite(double fxPos, double fyPos, double fwidth, double fheight, const sf::Texture &texture)
+Sprite::Sprite(double fxPos, double fyPos, double fwidth, double fheight, const sf::Texture &texture, int fID)
 {
 	xPos = fxPos;
 	yPos = fyPos;
 	width = fwidth;
 	height = fheight;
+	ID = fID;
 
 	//set the sprite with the new texture
 	sprite.setTexture(texture);
@@ -78,4 +79,9 @@ void Sprite::newY(double newY)
 
 	//update the position
 	sprite.setPosition(sf::Vector2f(xPos, yPos));
+}
+
+int Sprite::getID()
+{
+	return ID;
 }

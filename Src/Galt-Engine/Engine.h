@@ -15,6 +15,8 @@ namespace GaltEngine
 	class Engine
 	{
 	private:
+		double const playerMoveSpeed = 20.0; //will change this to be set in a text file or will have sprites be able to have a speed value
+
 		int winWidth;
 		int winHeight;
 		sf::RenderWindow window;
@@ -28,6 +30,11 @@ namespace GaltEngine
 
 		//object to manage the sprites and textures
 		SpriteManager sManager;
+
+		//Objects used to calculate the time between each frame
+		sf::Clock clock;
+		sf::Time elapsed;
+		double timeDelta;
 
 		bool createMap(std::string mapFile, std::string tileFile);
 		bool readLevel(std::string mapFile, std::vector<int>& level);

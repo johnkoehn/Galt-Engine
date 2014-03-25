@@ -60,6 +60,10 @@ void Engine::runGame()
 		//draw the map
 		window.draw(map);
 
+		//calculate time delta
+		elapsed = clock.restart();
+		timeDelta = elapsed.asSeconds();
+
 		//update the sprites
 		checkKeyInput();
 		
@@ -138,21 +142,21 @@ void Engine::checkKeyInput()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		//move player up
-		sManager.updatePosition(1, 0, -.01);
+		sManager.updatePosition(1, 0, -(playerMoveSpeed * timeDelta));
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		//move player down
-		sManager.updatePosition(1, 0, .01);
+		sManager.updatePosition(1, 0, (playerMoveSpeed * timeDelta));
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		//move player right
-		sManager.updatePosition(1, 0.01, 0);
+		sManager.updatePosition(1, playerMoveSpeed* timeDelta, 0);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		//move player left
-		sManager.updatePosition(1, -0.01, 0);
+		sManager.updatePosition(1, -(playerMoveSpeed * timeDelta), 0);
 	}
 }

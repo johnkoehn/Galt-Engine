@@ -36,9 +36,14 @@ namespace GaltEngine
 		sf::Time elapsed;
 		double timeDelta;
 
+		//object used for centering the player's view and scrolling
+		sf::View playerView; //TODO Prehapes create a player class?
+
 		bool createMap(std::string mapFile, std::string tileFile);
 		bool readLevel(std::string mapFile, std::vector<int>& level);
 		void checkKeyInput();
+		void setView();
+		void scroll(double deltaX, double deltaY);
 
 	public:
 

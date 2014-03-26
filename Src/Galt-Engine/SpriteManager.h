@@ -22,9 +22,13 @@ namespace GaltEngine
 
 	public:
 		SpriteManager(std::string filename, std::string texturesFile);
+
 		void add(Sprite newSprite);
 		void updatePosition(int spriteID, double deltaX, double deltaY);
 		void displaySprites(sf::RenderWindow& window);
+		Sprite* getSprite(int spriteID);
+
+
 
 
 	};

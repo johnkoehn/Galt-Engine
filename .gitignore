@@ -1,13 +1,8 @@
-Testbed.Build.CppClean.log
-Testbed.log
-CL.read.1.tlog
-CL.write.1.tlog
-Testbed.lastbuildstate
-cl.command.1.tlog
-link.command.1.tlog
-link.read.1.tlog
-link.write.1.tlog
-vc120.pdb
-Galt Engine.log
-Galt Engine.vcxproj.filters
-Testbed.vcxproj
+#other
+*.v12.suo
+*.v11.suo
+*.log
+*.Build.CppClean.log
+*.vcxproj.user
+IDE/Obj/
+*.sdf

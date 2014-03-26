@@ -16,6 +16,9 @@ Engine::Engine(int fwidth, int fheight, std::string ftitle, std::string mapFile,
 	{
 		std::cerr << "Failed to create map, Abort!\n";
 	}
+
+	//create the view based off player's position
+	setView();
 };
 
 Engine::~Engine()
@@ -59,6 +62,9 @@ void Engine::runGame()
 
 		//draw the map
 		window.draw(map);
+
+		//set the view 
+		window.setView(playerView);
 
 		//calculate time delta
 		elapsed = clock.restart();
@@ -136,27 +142,49 @@ bool Engine::readLevel(std::string mapFile, std::vector<int>& level)
 /****************************************************
 *Keyboard input can only move the player in the Engine
 *Player is always repersented by the first sprite
+*Scroll with the player
 *****************************************************/
 void Engine::checkKeyInput()
 {
+	double changePos = playerMoveSpeed * timeDelta;
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		//move player up
-		sManager.updatePosition(1, 0, -(playerMoveSpeed * timeDelta));
+		sManager.updatePosition(1, 0, -(changePos));
+		scroll(0, -changePos);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		//move player down
-		sManager.updatePosition(1, 0, (playerMoveSpeed * timeDelta));
+		sManager.updatePosition(1, 0, (changePos));
+		scroll(0, changePos);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		//move player right
-		sManager.updatePosition(1, playerMoveSpeed* timeDelta, 0);
+		sManager.updatePosition(1, changePos, 0);
+		scroll(changePos, 0);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		//move player left
-		sManager.updatePosition(1, -(playerMoveSpeed * timeDelta), 0);
+		sManager.updatePosition(1, -(changePos), 0);
+		scroll(-changePos, 0);
 	}
+}
+
+void Engine::setView()
+{
+	//get the player1 sprite for the location to center the view on
+	Sprite* playerSprite = sManager.getSprite(1);
+
+	//initialize the view
+	playerView.setCenter(sf::Vector2f(playerSprite->getX(), playerSprite->getY()));
+	playerView.setSize(sf::Vector2f(winWidth, winHeight));
+}
+
+void Engine::scroll(double deltaX, double deltaY)
+{
+	playerView.move(deltaX, deltaY);
 }

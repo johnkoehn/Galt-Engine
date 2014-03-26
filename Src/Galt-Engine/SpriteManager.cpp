@@ -79,9 +79,28 @@ void SpriteManager::updatePosition(int spriteID, double deltaX, double deltaY)
 		if (spriteID == (*i).getID())
 		{
 			(*i).updatePosition(deltaX, deltaY);
+			break;
 		}
 	}
 
+}
+
+Sprite* SpriteManager::getSprite(int spriteID)
+{
+	//create a pointer to a Sprite
+	Sprite* tempSprite;
+
+	list<Sprite>::iterator i;
+
+	//find the sprite
+	for (i = sprites.begin(); i != sprites.end(); ++i)
+	{
+		if (spriteID == (*i).getID())
+		{
+			tempSprite = &(*i);
+			return tempSprite;
+		}
+	}
 }
 
 //function iteriates throught the list and returns the address to the sprite

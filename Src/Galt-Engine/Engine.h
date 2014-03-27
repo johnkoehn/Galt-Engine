@@ -25,8 +25,6 @@ namespace GaltEngine
 
 		//object containg the level map
 		Map map;
-		int tileWidth;
-		int tileHeight;
 
 		//object to manage the sprites and textures
 		SpriteManager sManager;
@@ -39,7 +37,8 @@ namespace GaltEngine
 		//object used for centering the player's view and scrolling
 		sf::View playerView; //TODO Prehapes create a player class?
 
-		bool createMap(std::string mapFile, std::string tileFile);
+		//functions for creating the map
+		bool createMap(std::string mapFile, std::string tileFile, int tileHeight, int tileWidth);
 		bool readLevel(std::string mapFile, std::vector<int>& level);
 		void checkKeyInput();
 		void setView();

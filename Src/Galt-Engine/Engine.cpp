@@ -8,11 +8,9 @@ Engine::Engine(int fwidth, int fheight, std::string ftitle, std::string mapFile,
 	winWidth = fwidth;
 	winHeight = fheight;
 	winTitle = ftitle;
-	tileWidth = ftileWidth;
-	tileHeight = ftileHeight;
 
 	//create map
-	if (!createMap(mapFile, tileFile))
+	if (!createMap(mapFile, tileFile, ftileHeight, ftileWidth))
 	{
 		std::cerr << "Failed to create map, Abort!\n";
 	}
@@ -47,7 +45,7 @@ void Engine::runGame()
 	while (window.isOpen())
 	{
 		
-		//check for new window events that occured since the last loop iteration
+		//check for new window events that occurred since the last loop iteration
 		if (window.pollEvent(event))
 		{
 			//if a close requested event occurs, close the window
@@ -84,58 +82,21 @@ void Engine::runGame()
 	}
 }
 
-bool Engine::createMap(std::string mapFile, std::string tileFile)
+bool Engine::createMap(std::string mapFile, std::string tileFile, int tileHeight, int tileWidth)
 {
-	//create a vector to hold the integers representing the map
-	std::vector<int> level;
+	//initilize the map
+	map.mapSet(tileFile, mapFile, tileHeight, tileWidth);
 
-	if (!readLevel(mapFile, level))
+	//have the map read the level
+	if (!map.readLevel())
 	{
 		std::cerr << "Invaild file!\n";
 		return false;
 	}
 
-	//caclulate the map width and height in tiles (I'll figure this out later)
-	int mapWidth = 30; //winWidth / tileWidth;
-	int mapHeight = 30; // winHeight / tileHeight;
-
 	//now create the map
-	map.load(tileFile, sf::Vector2u(tileWidth, tileHeight), level, mapWidth, mapHeight);
+	map.load();
 
-	return true;
-}
-
-bool Engine::readLevel(std::string mapFile, std::vector<int>& level)
-{
-	ifstream indata;
-	indata.open(mapFile);
-
-	//to avoid the vector constantly resizing will set a capacity
-	int capacity = 500;
-	level.resize(capacity);
-
-	if (!indata)
-	{
-		return false;
-	}
-
-	//read the text file for all the integers
-	int readInt;
-	int i = 0;
-	while (!indata.eof())
-	{
-		indata >> readInt;
-		level[i] = readInt;
-
-		i += 1;
-		if (!(i < capacity))
-		{
-			capacity += 250;
-			level.resize(capacity);
-		}
-	}
-
-	indata.close();
 	return true;
 }
 

@@ -3,6 +3,10 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <fstream>
+#include <sstream>
+
+using std::ifstream;
 
 namespace GaltEngine
 {
@@ -11,26 +15,32 @@ namespace GaltEngine
 	private:
 		sf::VertexArray m_vertices;
 		sf::Texture m_tileset;
-		/*
-		std::string tilesetFile;
 		int tileHeight;
 		int tileWidth;
-		const int* map; //an array of integers containg the map
+		std::vector<int>* tiles;
+		std::string* tilesetFile;
+		std::string* mapFile;
 
-		//map width is measured in tiles
+		//These values are measured in the number of tiles that fit into the map
 		int mapWidth;
 		int mapHeight;
-		*/
 
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+		void getMapInfo();
 
 	public:
+		Map(std::string ftilesetFile, std::string fmapFile, int ftileHeight, int ftileWidth);
+		Map();
+		~Map();
+		void mapSet(std::string ftilesetFile, std::string fmapFile, int ftileHeight, int ftileWidth);
+		bool readLevel();
+
 		/***
 		*tileSize is a vector containg the size of the tiles
 		*tiles is an array of integers repersenting the map
 		*width and height are the map width and height in tiles
 		***/
-		bool load(const std::string& tilesetFile, sf::Vector2u tileSize, const std::vector<int>& tiles, unsigned int width, unsigned int height);
+		bool load();
 
 	};
 }

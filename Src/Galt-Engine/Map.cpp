@@ -2,39 +2,134 @@
 
 using namespace GaltEngine;
 
-bool Map::load(const std::string& tilesetFile, sf::Vector2u tileSize, const std::vector<int>& tiles, unsigned int width, unsigned int height)
+Map::Map(std::string ftilesetFile, std::string fmapFile, int ftileHeight, int ftileWidth)
+{
+	//initalize pointers
+	tilesetFile = new std::string;
+	mapFile = new std::string;
+	tiles = new std::vector<int>;
+
+	*tilesetFile = ftilesetFile;
+	*mapFile = fmapFile;
+	tileWidth = ftileWidth;
+	tileHeight = ftileHeight;
+}
+
+Map::Map()
+{
+	//initalize pointers
+	tilesetFile = new std::string;
+	mapFile = new std::string;
+	tiles = new std::vector<int>;
+}
+
+Map::~Map()
+{
+	if (tiles != NULL)
+	{
+		delete tiles;
+	}
+
+	if (tilesetFile != NULL)
+	{
+		delete tilesetFile;
+	}
+
+	if (mapFile != NULL)
+	{
+		delete mapFile;
+	}
+}
+
+/***
+*Used for constructing map later
+***/
+void Map::mapSet(std::string ftilesetFile, std::string fmapFile, int ftileHeight, int ftileWidth)
+{
+	*tilesetFile = ftilesetFile;
+	*mapFile = fmapFile;
+	tileWidth = ftileWidth;
+	tileHeight = ftileHeight;
+}
+
+bool Map::readLevel()
+{
+	ifstream indata;
+	indata.open(*mapFile);
+
+	//to avoid the vector constantly resizing will set a capacity
+	int capacity = 500;
+	tiles->resize(capacity);
+
+	if (!indata)
+	{
+		std::cerr << "Failed to find the level file!\n";
+		return false;
+	}
+
+	//read the text file for all the integers
+	int readInt;
+	int i = 0;
+	while (!indata.eof())
+	{
+		indata >> readInt;
+		(*tiles)[i] = readInt;
+
+		i += 1;
+		if (!(i < capacity))
+		{
+			capacity += 250;
+			tiles->resize(capacity);
+		}
+	}
+
+	indata.close();
+
+	//get mapWidth and mapHeight
+	getMapInfo();
+	
+	//no longer need mapFile
+	delete mapFile;
+	mapFile = NULL;
+	return true;
+}
+
+bool Map::load()
 {
 	//load the texture for the map
-	if (!m_tileset.loadFromFile(tilesetFile))
+	if (!m_tileset.loadFromFile(*tilesetFile))
 	{
 		std::cout << "Failed to find tilesetFile!\n";
 		return false;
 	}
 
+	//create a vector containg the tileSize
+	sf::Vector2u tileSize = sf::Vector2u(tileWidth, tileHeight);
+
 	//resize the vertex array to fit the level size
 	m_vertices.setPrimitiveType(sf::Quads);
-	m_vertices.resize(width * height * 4);
+	m_vertices.resize(mapWidth * mapHeight * 4);
 
-	for (unsigned int i = 0; i < width; ++i)
+	for (unsigned int i = 0; i < mapWidth; ++i)
 	{
-		for (unsigned int j = 0; j < height; ++j)
+		for (unsigned int j = 0; j < mapHeight; ++j)
 		{
 			//check for going out of the vector tiles bounds
-			if ((i + (j*width)) >= tiles.size())
+			if ((i + (j*mapWidth)) >= tiles->size())
 			{
 				std::cerr << "Out of bounds for tiles vector, aborting!";
 				return false;
 			}
 
 			//get the current tile number
-			int tileNumber = tiles[i + (j * width)];
+			int tileNumber = (*tiles)[i + (j * mapWidth)];
 
 			//find its position in the tileset texture
 			int tu = tileNumber % (m_tileset.getSize().x / tileSize.x);
 			int tv = tileNumber / (m_tileset.getSize().x / tileSize.x);
 
 			//get a pointer to the current tile's quad
-			sf::Vertex* quad = &m_vertices[(i + j * width) * 4];
+			sf::Vertex* quad = &m_vertices[(i + j * mapWidth) * 4];
 
 			//define its 4 corners
 			quad[0].position = sf::Vector2f(i * tileSize.x, j * tileSize.y);
@@ -49,6 +144,11 @@ bool Map::load(const std::string& tilesetFile, sf::Vector2u tileSize, const std:
 			quad[3].texCoords = sf::Vector2f(tu * tileSize.x, (tv + 1) * tileSize.y);
 		}
 	}
+
+	//free memorey
+	delete tilesetFile;
+	tilesetFile = NULL;
+
 	return true;
 }
 
@@ -63,4 +163,35 @@ void Map::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 	//draw the vertex array
 	target.draw(m_vertices, states);
+}
+
+void Map::getMapInfo()
+{
+	ifstream file;
+	file.open(*mapFile);
+
+	std::string dummyString; //used to get # of columns
+	int c = 0;				 //used to get # of rows
+
+	while (!file.eof())
+	{
+		getline(file, dummyString);
+		c++;
+	}
+	mapHeight = c;
+	file.close();
+
+	//now get columns
+	std::stringstream is(dummyString);
+	int n;
+	c = 0;
+
+	while (is >> n)
+	{
+		c++;
+	}
+	mapWidth = c;
+
+	delete mapFile;
+	mapFile = NULL;
 }

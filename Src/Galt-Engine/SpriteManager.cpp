@@ -101,6 +101,9 @@ Sprite* SpriteManager::getSprite(int spriteID)
 			return tempSprite;
 		}
 	}
+
+	std::cerr << "No sprited with ID: " << spriteID;
+	return NULL;
 }
 
 //function iteriates throught the list and returns the address to the sprite

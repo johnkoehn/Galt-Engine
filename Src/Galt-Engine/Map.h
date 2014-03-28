@@ -22,11 +22,16 @@ namespace GaltEngine
 		std::string* mapFile;
 
 		//These values are measured in the number of tiles that fit into the map
-		int mapWidth;
-		int mapHeight;
+		int mWidthTiles;
+		int mHeightTiles;
+
+		//width of the map in pixels
+		int mWidth;
+		int mHeight;
 
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 		void getMapInfo();
+		void calculateMapSize();
 
 	public:
 		Map(std::string ftilesetFile, std::string fmapFile, int ftileHeight, int ftileWidth);
@@ -34,6 +39,11 @@ namespace GaltEngine
 		~Map();
 		void mapSet(std::string ftilesetFile, std::string fmapFile, int ftileHeight, int ftileWidth);
 		bool readLevel();
+
+		int getMapWidth();
+		int getMapHeight();
+		int getMapWidthT(); //width of map in tiles
+		int getMapHeightT(); //height of map in tiles
 
 		/***
 		*tileSize is a vector containg the size of the tiles

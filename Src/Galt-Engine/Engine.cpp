@@ -140,8 +140,16 @@ void Engine::setView()
 	//get the player1 sprite for the location to center the view on
 	Sprite* playerSprite = sManager.getSprite(1);
 
+	//need to find the center location of the spirte
+	double xCenter = playerSprite->getWidth() / 2;
+	double yCenter = playerSprite->getHeight() / 2;
+
+	//now find the (x,y) position of the center of the sprite
+	double xPos = playerSprite->getX() + xCenter;
+	double yPos = playerSprite->getY() + yCenter;
+
 	//initialize the view
-	playerView.setCenter(sf::Vector2f(playerSprite->getX(), playerSprite->getY()));
+	playerView.setCenter(sf::Vector2f(xPos, yPos));
 	playerView.setSize(sf::Vector2f(winWidth, winHeight));
 }
 

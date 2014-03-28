@@ -85,7 +85,7 @@ bool Map::readLevel()
 
 	indata.close();
 
-	//get mapWidth and mapHeight
+	//get mWidthTiles and mHeightTiles
 	getMapInfo();
 	
 	//no longer need mapFile
@@ -108,28 +108,28 @@ bool Map::load()
 
 	//resize the vertex array to fit the level size
 	m_vertices.setPrimitiveType(sf::Quads);
-	m_vertices.resize(mapWidth * mapHeight * 4);
+	m_vertices.resize(mWidthTiles * mHeightTiles * 4);
 
-	for (unsigned int i = 0; i < mapWidth; ++i)
+	for (unsigned int i = 0; i < mWidthTiles; ++i)
 	{
-		for (unsigned int j = 0; j < mapHeight; ++j)
+		for (unsigned int j = 0; j < mHeightTiles; ++j)
 		{
 			//check for going out of the vector tiles bounds
-			if ((i + (j*mapWidth)) >= tiles->size())
+			if ((i + (j*mWidthTiles)) >= tiles->size())
 			{
 				std::cerr << "Out of bounds for tiles vector, aborting!";
 				return false;
 			}
 
 			//get the current tile number
-			int tileNumber = (*tiles)[i + (j * mapWidth)];
+			int tileNumber = (*tiles)[i + (j * mWidthTiles)];
 
 			//find its position in the tileset texture
 			int tu = tileNumber % (m_tileset.getSize().x / tileSize.x);
 			int tv = tileNumber / (m_tileset.getSize().x / tileSize.x);
 
 			//get a pointer to the current tile's quad
-			sf::Vertex* quad = &m_vertices[(i + j * mapWidth) * 4];
+			sf::Vertex* quad = &m_vertices[(i + j * mWidthTiles) * 4];
 
 			//define its 4 corners
 			quad[0].position = sf::Vector2f(i * tileSize.x, j * tileSize.y);
@@ -173,12 +173,13 @@ void Map::getMapInfo()
 	std::string dummyString; //used to get # of columns
 	int c = 0;				 //used to get # of rows
 
+	//get map height
 	while (!file.eof())
 	{
 		getline(file, dummyString);
 		c++;
 	}
-	mapHeight = c;
+	mHeightTiles = c;
 	file.close();
 
 	//now get columns
@@ -190,8 +191,37 @@ void Map::getMapInfo()
 	{
 		c++;
 	}
-	mapWidth = c;
+	mWidthTiles = c;
 
 	delete mapFile;
 	mapFile = NULL;
+
+	//now use that information to get map size in pixels
+	calculateMapSize();
+}
+
+void Map::calculateMapSize()
+{
+	mWidth = mWidthTiles * tileWidth;
+	mHeight = mHeightTiles * tileHeight;
+}
+
+int Map::getMapHeight()
+{
+	return mHeight;
+}
+
+int Map::getMapWidth()
+{
+	return mWidth;
+}
+
+int Map::getMapHeightT()
+{
+	return mWidthTiles;
+}
+
+int Map::getMapWidthT()
+{
+	return mHeightTiles;
 }

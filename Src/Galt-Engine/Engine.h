@@ -15,7 +15,7 @@ namespace GaltEngine
 	class Engine
 	{
 	private:
-		double const playerMoveSpeed = 20.0; //will change this to be set in a text file or will have sprites be able to have a speed value
+		double const playerMoveSpeed = 100.0; //will change this to be set in a text file or will have sprites be able to have a speed value
 
 		int winWidth;
 		int winHeight;
@@ -36,18 +36,21 @@ namespace GaltEngine
 
 		//object used for centering the player's view and scrolling
 		sf::View playerView; //TODO Prehapes create a player class?
+		bool borderCollision;
 
 		//functions for creating the map
 		bool createMap(std::string mapFile, std::string tileFile, int tileHeight, int tileWidth);
 		bool readLevel(std::string mapFile, std::vector<int>& level);
+
 		void checkKeyInput();
 		void setView();
 		void scroll(double deltaX, double deltaY);
+		bool checkBorderCollision(double deltaX, double deltaY);
 
 	public:
 
 		//TODO make a text file containing the information for the other text files!
-		Engine(int fwidth = 800, int fheight = 600, std::string ftitle = "Default", std::string mapFile = "default.txt", int ftileWidth = 32, int ftileHeight = 32, std::string tileFile = "tileset1.png", std::string texturesFile = "textures.txt", std::string spritesFile = "sprites.txt");
+		Engine(int fwidth = 800, int fheight = 600, std::string ftitle = "Default", std::string mapFile = "default.txt", int ftileWidth = 32, int ftileHeight = 32, std::string tileFile = "tileset1.png", std::string texturesFile = "textures.txt", std::string spritesFile = "sprites.txt", bool fborderCollision = false);
 		~Engine();
 
 		//mutators/accessors

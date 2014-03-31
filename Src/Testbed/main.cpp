@@ -45,7 +45,7 @@
 int main()
 {
 	std::string title = "map demo";
-	GaltEngine::Engine game(800, 600, title, "level.txt", 32, 32, "tileset1.png", "textures.txt", "sprites.txt");
+	GaltEngine::Engine game(800, 600, title, "level.txt", 32, 32, "tileset1.png", "textures.txt", "sprites.txt", true);
 	game.runGame();
 
 	return 0;

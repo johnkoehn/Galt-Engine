@@ -37,6 +37,7 @@ namespace GaltEngine
 		//object used for centering the player's view and scrolling
 		sf::View playerView; //TODO Prehapes create a player class?
 		bool borderCollision;
+		bool atXBorder;
 
 		//functions for creating the map
 		bool createMap(std::string mapFile, std::string tileFile, int tileHeight, int tileWidth);

@@ -9,6 +9,7 @@ Engine::Engine(int fwidth, int fheight, std::string ftitle, std::string mapFile,
 	winHeight = fheight;
 	winTitle = ftitle;
 	borderCollision = fborderCollision;
+	atXBorder = false;
 
 	//create map
 	if (!createMap(mapFile, tileFile, ftileHeight, ftileWidth))
@@ -185,17 +186,10 @@ bool Engine::checkBorderCollision(double deltaX, double deltaY)
 		{
 			std::cout << "At boarder!\n";
 			//now see if the camera extrusion is at the border (if not put it there)
-			if (!(cameraXExtrusion - deltaX == 0))
+			if (!(cameraXExtrusion - deltaX == 0) && !atXBorder)
 			{
-				//get the difference from the border
-				double difference = winWidth - cameraXExtrusion;
-				playerView.move(difference, 0);
-			}
-			else if (!(cameraXExtrusion - deltaX == map.getMapWidth()))
-			{
-				double difference = map.getMapWidth() - winWidth - cameraXExtrusion;
-				std::cout << difference << "\n";
-				playerView.move(difference, 0);
+				//figure how to make it more precise
+				atXBorder = true;
 			}
 			return true;
 		}

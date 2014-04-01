@@ -195,25 +195,16 @@ void Map::getMapInfo()
 
 	delete mapFile;
 	mapFile = NULL;
-
-	//now use that information to get map size in pixels
-	calculateMapSize();
-}
-
-void Map::calculateMapSize()
-{
-	mWidth = mWidthTiles * tileWidth;
-	mHeight = mHeightTiles * tileHeight;
 }
 
 int Map::getMapHeight()
 {
-	return mHeight;
+	return mHeightTiles * tileHeight;
 }
 
 int Map::getMapWidth()
 {
-	return mWidth;
+	return mWidthTiles * tileWidth;
 }
 
 int Map::getMapHeightT()

@@ -25,13 +25,8 @@ namespace GaltEngine
 		int mWidthTiles;
 		int mHeightTiles;
 
-		//width of the map in pixels
-		int mWidth;
-		int mHeight;
-
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 		void getMapInfo();
-		void calculateMapSize();
 
 	public:
 		Map(std::string ftilesetFile, std::string fmapFile, int ftileHeight, int ftileWidth);

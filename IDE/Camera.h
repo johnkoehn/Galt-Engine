@@ -25,6 +25,8 @@ namespace GaltEngine
 		Camera();
 		void setView(double fxCenter, double fyCenter, double fcameraWidth, double fcameraHeight);
 		void move(double deltaX, double deltaY);
+		double getX();
+		double getY();
 	};
 }
 #endif

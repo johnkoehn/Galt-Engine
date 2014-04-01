@@ -41,3 +41,13 @@ void Camera::move(double deltaX, double deltaY)
 
 	view.move(deltaX, deltaY);
 }
+
+double Camera::getX()
+{
+	return xCenter;
+}
+
+double Camera::getY()
+{
+	return yCenter;
+}

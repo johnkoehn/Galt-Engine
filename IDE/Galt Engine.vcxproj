@@ -16,6 +16,7 @@
     <ClCompile Include="..\Src\Galt-Engine\Sprite.cpp" />
     <ClCompile Include="..\Src\Galt-Engine\SpriteManager.cpp" />
     <ClCompile Include="..\Src\Galt-Engine\TextureManager.cpp" />
+    <ClCompile Include="Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Src\Galt-Engine\Engine.h" />
@@ -23,6 +24,7 @@
     <ClInclude Include="..\Src\Galt-Engine\Sprite.h" />
     <ClInclude Include="..\Src\Galt-Engine\SpriteManager.h" />
     <ClInclude Include="..\Src\Galt-Engine\TextureManager.h" />
+    <ClInclude Include="Camera.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{94D48FFD-EFB8-4A61-9FE0-2413C9B05E10}</ProjectGuid>

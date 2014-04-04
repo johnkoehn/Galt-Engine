@@ -103,7 +103,7 @@ bool Map::load()
 		return false;
 	}
 
-	//create a vector containg the tileSize
+	//create a vector containing the tileSize
 	sf::Vector2u tileSize = sf::Vector2u(tileWidth, tileHeight);
 
 	//resize the vertex array to fit the level size
@@ -195,25 +195,16 @@ void Map::getMapInfo()
 
 	delete mapFile;
 	mapFile = NULL;
-
-	//now use that information to get map size in pixels
-	calculateMapSize();
-}
-
-void Map::calculateMapSize()
-{
-	mWidth = mWidthTiles * tileWidth;
-	mHeight = mHeightTiles * tileHeight;
 }
 
 int Map::getMapHeight()
 {
-	return mHeight;
+	return mHeightTiles * tileHeight;
 }
 
 int Map::getMapWidth()
 {
-	return mWidth;
+	return mWidthTiles * tileWidth;
 }
 
 int Map::getMapHeightT()

@@ -86,13 +86,13 @@ void Engine::runGame()
 
 bool Engine::createMap(std::string mapFile, std::string tileFile, int tileHeight, int tileWidth)
 {
-	//initilize the map
+	//initialize the map
 	map.mapSet(tileFile, mapFile, tileHeight, tileWidth);
 
 	//have the map read the level
 	if (!map.readLevel())
 	{
-		std::cerr << "Invaild file!\n";
+		std::cerr << "Invalid file!\n";
 		return false;
 	}
 
@@ -104,7 +104,7 @@ bool Engine::createMap(std::string mapFile, std::string tileFile, int tileHeight
 
 /****************************************************
 *Keyboard input can only move the player in the Engine
-*Player is always repersented by the first sprite
+*Player is always represented by the first sprite
 *Scroll with the player
 *****************************************************/
 void Engine::checkKeyInput()
@@ -142,7 +142,7 @@ void Engine::setView()
 	//get the player1 sprite for the location to center the view on
 	Sprite* playerSprite = sManager.getSprite(1);
 
-	//need to find the center location of the spirte
+	//need to find the center location of the sprite
 	double xCenter = playerSprite->getWidth() / 2;
 	double yCenter = playerSprite->getHeight() / 2;
 

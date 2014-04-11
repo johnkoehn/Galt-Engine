@@ -17,11 +17,20 @@ namespace GaltE
 	private:
 		int winWidth;
 		int winHeight;
-		bool fullscreen;
 		bool quit;
+		bool winFullScreen;
+		std::string winName;
 		sf::RenderWindow window;
-		sf::Event event;
 
+		/**
+		* Method loads the window configurations from a file
+		*/
+		bool loadConfig(std::string fileName);
+
+		/**
+		* Method initilaizes the window
+		*/
+		void createWin();
 	public:
 		/**
 		* Constructor for reading the infromation from a file
@@ -31,15 +40,16 @@ namespace GaltE
 		/**
 		* Constructor with basic information
 		*/
-		Window(int width, int height, bool fullscreen, std::string title);
+		Window(int width, int height, bool fullscreen, std::string name);
 
 		/**
 		*Constructors and Mutators
 		*/
 		int getWidth() { return winWidth;  }
 		int getHeight() { return winHeight; }
-		void setFullScreen() { fullscreen = true; }
-		void quite() { quit = true;  }
+		std::string getName() { return winName; }
+		//void setFullScreen();
+		void exit();
 
 	};
 }

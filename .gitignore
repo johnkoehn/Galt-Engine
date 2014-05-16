@@ -1,1 +1,12 @@
+#other
+*.v12.suo
+*.v11.suo
 *.log
+*.Build.CppClean.log
+*.vcxproj.user
+IDE/Obj/
+*.sdf
+
+*.exe
+*.pdb
+*ilk

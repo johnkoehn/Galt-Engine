@@ -1,4 +1,4 @@
-#include "Window.h";
+#include "Window.h"
 
 using namespace GaltE;
 
@@ -17,8 +17,11 @@ Window::Window(int width, int height, bool fullscreen, std::string name)
 	winWidth = width;
 	winHeight = height;
 	std::string winName = name;
-	quit = false;
+	open = true;
 	winFullScreen = fullscreen;
+	
+	//set default background color
+	color = sf::Color::Black;
 	
 	createWin();
 }
@@ -38,11 +41,14 @@ bool Window::loadConfig(std::string fileName)
 	file >> winName;
 	file >> winFullScreen;
 
+	return true;
+
 }
 
 void Window::exit()
 {
-	quit = false;
+	std::cout << "Closing!\n";
+	open = false;
 	window.close();
 }
 
@@ -56,4 +62,24 @@ void Window::createWin()
 	{
 		window.create(sf::VideoMode(winWidth, winHeight), winName);
 	}
+}
+
+void Window::setColor(sf::Color mColor)
+{
+	color = mColor;
+}
+
+void Window::clear()
+{
+	window.clear(color);
+}
+
+void Window::display()
+{
+	window.display();
+}
+
+bool Window::pollEvent()
+{
+	return window.pollEvent(winEvent);
 }

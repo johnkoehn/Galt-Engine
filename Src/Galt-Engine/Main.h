@@ -9,6 +9,6 @@
 #include <fstream>
 #include <sstream>
 
-#include <SFML/Graphics.hpp>
+#include "SFML/Graphics.hpp"
 
 #endif

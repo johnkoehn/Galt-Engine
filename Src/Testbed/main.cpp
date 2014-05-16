@@ -39,12 +39,42 @@
 
 
 #include <iostream>
+#include "..\Galt-Engine\Window.h"
+#include <ctime>
 
 int main()
 {
-	std::string title = "map demo";
-	//altEngine::Engine game(800, 600, title, "level.txt", 32, 32, "tileset1.png", "textures.txt", "sprites.txt", true);
-	//game.runGame();
+	//prepare a clock
+	std::clock_t start;
+	double duration;
+
+	start = std::clock();
+	duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
+
+	//create the window
+	std::string title = "Engine V.01";
+	GaltE::Window window(800, 600, false, title);
+
+	window.setColor(sf::Color::Blue);
+
+	//Get Event
+	sf::Event * winEvent = window.getEvent();
+
+	while (window.isOpen())
+	{
+		window.clear();
+		window.display();
+
+		//check for new window events that occured since the last loop iteration
+		if (window.pollEvent())
+		{
+			//if a close requested event occurs, close the window
+			if ((*winEvent).type == sf::Event::Closed)
+			{
+				window.exit();
+			}
+		}
+	}
 
 	return 0;
 }

@@ -17,10 +17,12 @@ namespace GaltE
 	private:
 		int winWidth;
 		int winHeight;
-		bool quit;
+		bool open;
 		bool winFullScreen;
 		std::string winName;
 		sf::RenderWindow window;
+		sf::Event winEvent;
+		sf::Color color;
 
 		/**
 		* Method loads the window configurations from a file
@@ -43,13 +45,43 @@ namespace GaltE
 		Window(int width, int height, bool fullscreen, std::string name);
 
 		/**
-		*Constructors and Mutators
+		* Method causes the window to close, and sets open to false
 		*/
-		int getWidth() { return winWidth;  }
-		int getHeight() { return winHeight; }
-		std::string getName() { return winName; }
-		//void setFullScreen();
 		void exit();
+
+		/**
+		* Method returns a pointer of winEvent
+		*/
+		sf::Event* getEvent()	{ return &winEvent;	}
+
+		/**
+		* Method sets a color for the screen
+		*/
+		void setColor(sf::Color color);
+
+		/**
+		* Method clears the screen for preperation for the next frame
+		*/
+		void clear();
+
+		/**
+		* Method displays the new frame
+		*/
+		void display();
+
+		/**
+		* Method polls for a window event
+		*/
+		bool pollEvent();
+
+		/**
+		*Basic
+		*/
+		int getWidth()			{ return winWidth;  }
+		int getHeight()			{ return winHeight; }
+		std::string getName()	{ return winName;   }
+		bool isOpen()			{ return open;      }
+		
 
 	};
 }

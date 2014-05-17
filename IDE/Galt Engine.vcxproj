@@ -11,9 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Src\Galt-Engine\Camera.cpp" />
     <ClCompile Include="..\Src\Galt-Engine\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Src\Galt-Engine\Camera.h" />
     <ClInclude Include="..\Src\Galt-Engine\Main.h" />
     <ClInclude Include="..\Src\Galt-Engine\Window.h" />
   </ItemGroup>

@@ -10,5 +10,6 @@
 #include <sstream>
 
 #include "SFML/Graphics.hpp"
+#include "Utility.h"
 
 #endif

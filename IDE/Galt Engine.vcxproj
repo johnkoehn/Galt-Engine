@@ -17,6 +17,8 @@
   <ItemGroup>
     <ClInclude Include="..\Src\Galt-Engine\Camera.h" />
     <ClInclude Include="..\Src\Galt-Engine\Main.h" />
+    <ClInclude Include="..\Src\Galt-Engine\Utility.h" />
+    <ClInclude Include="..\Src\Galt-Engine\PhyVec.h" />
     <ClInclude Include="..\Src\Galt-Engine\Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

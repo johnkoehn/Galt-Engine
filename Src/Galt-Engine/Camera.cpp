@@ -54,6 +54,31 @@ void Camera::setViewport(sf::FloatRect& rect)
 	if (!(rect.left <= 1) || !(rect.left >= 0))
 	{
 		rect.left = 0;
-		std::cerr << "View port value greater then 1 or less then 0";
+		std::cerr << "View port left value greater then 1 or less then 0\n";
 	}
+	
+	if (!(rect.top <= 1) || !(rect.top >= 0))
+	{
+		rect.top = 0;
+		std::cerr << "View port top value greater then 1 or less then 0\n";
+	}
+	
+	if (!(rect.width <= 1) || !(rect.width >= 0))
+	{
+		rect.width = 1;
+		std::cerr << "View port width value greater then 1 or less then 0\n";
+	}
+	
+	if (!(rect.height <= 1) || !(rect.height >= 0))
+	{
+		rect.height = 1;
+		std::cerr << "View port width value greater then 1 or less then 0\n";
+	}
+
+	view.setViewport(rect);
+}
+
+void Camera::zoom(float factor)
+{
+	view.zoom(factor);
 }

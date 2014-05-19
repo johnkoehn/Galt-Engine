@@ -83,3 +83,13 @@ bool Window::pollEvent()
 {
 	return window.pollEvent(winEvent);
 }
+
+void Window::setCamera(Camera& camera)
+{
+	window.setView(*(camera.getView()));
+}
+
+void Window::draw(const sf::Drawable& drawable)
+{
+	window.draw(drawable);
+}

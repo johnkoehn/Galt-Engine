@@ -2,6 +2,7 @@
 #define WINDOW_H
 
 #include "Main.h"
+#include "Camera.h"
 
 namespace GaltE
 {
@@ -73,6 +74,16 @@ namespace GaltE
 		* Method polls for a window event
 		*/
 		bool pollEvent();
+
+		/**
+		* Sets the window to use the camera
+		*/
+		void setCamera(Camera& camera);
+
+		/**
+		* Draws a Drawable object to the window
+		*/
+		void draw(const sf::Drawable& drawable);
 
 		/**
 		*Basic

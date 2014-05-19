@@ -78,9 +78,11 @@ namespace GaltE
 
 		/**
 		* Method takes a factor to zoom the screen out by. Thus a factor of less then 1
-		* zooms out, greater zooms in
+		* zooms in, greater zooms out
 		*/
 		void zoom(float factor);
+
+		sf::View* getView() { return &view; }
 	};
 }
 

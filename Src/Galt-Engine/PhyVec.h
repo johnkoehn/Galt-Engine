@@ -11,68 +11,111 @@ namespace GaltE
 	*/
 	class PhyVec
 	{
-	private:
+	public:
+		/**
+		* This is a Dan recommandation and I agree with it
+		*/
 		Type x;
 		Type y;
 
-	public:
 		/**
 		* Give the xCoordinate and yCoordinate
 		*/
-		PhyVec(Type xCoordinate, Type yCoordinate);
+		PhyVec(Type xCoordinate, Type yCoordinate)
+		{
+			x = xCoordinate;
+			y = yCoordinate;
+		}
 
 		/**
 		* Change x and y value by an amount
 		*/
-		void updatePos(Type deltaX, Type deltaY);
+		void updatePos(Type deltaX, Type deltaY)
+		{
+			x += deltaX;
+			y += deltaY;
+		}
 
 		/**
 		* Change x value by an amount
 		*/
-		void updateX(Type deltaX);
+		void updateX(Type deltaX)
+		{
+			x += deltaX;
+		}
 
 		/**
 		* Change y value by an amount
 		*/
-		void updateY(Type deltaY);
+		void updateY(Type deltaY)
+		{
+			y += deltaY;
+		}
 
 		/**
 		* Set x and y value
 		*/
-		void setPos(Type newX, Type newY);
+		void setPos(Type newX, Type newY)
+		{
+			x = newX;
+			y = newY;
+		}
 
 		/**
 		* Set x value
 		*/
-		void setX(Type newX);
+		void setX(Type newX)
+		{
+			x = newX;
+		}
 
 		/**
 		* set y value
 		*/
-		void setY(Type setY);
+		void setY(Type setY)
+		{
+			y = setY;
+		}
 
 		/**
 		* get the magnitude of the vector
 		*/
-		Type magnitude();
+		Type magnitude()
+		{
+			return sqrt((x*x) + (y*y));
+		}
 
 		/**
 		* Get the angle between two vectors
-		* returned angle is an int to prevent rounding 
-		* issues
+		* returned angle is a double
 		*/
-		int getAngleBetween(const PhyVec& vec);
+		double getAngleBetween(const PhyVec& vec)
+		{
+			return (double) acos(dotProduct(vec) / (vec.magnitude() * this.magnitude());
+		}
 
 		/**
 		* Calculate the dot product between the 
 		* two vectors
 		*/
-		Type dotProduct(const PhyVec& vec);
+		Type dotProduct(const PhyVec& vec)
+		{
+			return (vec.x * x) + (vec.y * y);
+		}
 
 		/**
 		* Operator to preform the dot proudct
 		*/
-		Type operator*(const PhyVec& vec);
+		Type operator*(const PhyVec& vec)
+		{
+			return dotProduct(vec);
+		}
+
+		/**
+		* Accessors
+		*/
+		Type getX() { return x;  }
+		Type getY() { return y;  }
 
 
 	};

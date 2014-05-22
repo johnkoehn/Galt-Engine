@@ -28,6 +28,15 @@ namespace GaltE
 		}
 
 		/**
+		* Default Constructor, sets x and y to zero
+		*/
+		PhyVec()
+		{
+			x = 0;
+			y = 0;
+		}
+
+		/**
 		* Change x and y value by an amount
 		*/
 		void updatePos(Type deltaX, Type deltaY)
@@ -80,18 +89,27 @@ namespace GaltE
 		/**
 		* get the magnitude of the vector
 		*/
-		Type magnitude()
+		Type magnitude() const
 		{
-			return sqrt((x*x) + (y*y));
+			return (Type)sqrt((x*x) + (y*y));
+		}
+
+		/**
+		* get the magnitude of the vector using the double data type
+		*/
+		double magnitudeD() const
+		{
+			return (double)sqrt((x*x) + (y*y));
 		}
 
 		/**
 		* Get the angle between two vectors
-		* returned angle is a double
+		* returned angle is a double in radians
 		*/
 		double getAngleBetween(const PhyVec& vec)
 		{
-			return (double)acos(dotProduct(vec) / (vec.magnitude() * this.magnitude()));
+			//must use double magnitude to get right value
+			return (double) acos(dotProduct(vec) / (vec.magnitudeD() * magnitudeD()));
 		}
 
 		/**

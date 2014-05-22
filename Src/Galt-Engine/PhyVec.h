@@ -91,11 +91,11 @@ namespace GaltE
 		*/
 		double getAngleBetween(const PhyVec& vec)
 		{
-			return (double) acos(dotProduct(vec) / (vec.magnitude() * this.magnitude());
+			return (double)acos(dotProduct(vec) / (vec.magnitude() * this.magnitude()));
 		}
 
 		/**
-		* Calculate the dot product between the 
+		* Calculate the dot product between the
 		* two vectors
 		*/
 		Type dotProduct(const PhyVec& vec)
@@ -114,8 +114,8 @@ namespace GaltE
 		/**
 		* Accessors
 		*/
-		Type getX() { return x;  }
-		Type getY() { return y;  }
+		Type getX() { return x; }
+		Type getY() { return y; }
 
 
 	};

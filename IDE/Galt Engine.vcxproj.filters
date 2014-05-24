@@ -7,6 +7,9 @@
     <ClCompile Include="..\Src\Galt-Engine\Window.cpp">
       <Filter>CPP Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Src\Galt-Engine\Timer.cpp">
+      <Filter>CPP Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Src\Galt-Engine\Camera.h">
@@ -22,6 +25,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\Src\Galt-Engine\Window.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Src\Galt-Engine\Timer.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

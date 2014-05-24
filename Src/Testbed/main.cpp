@@ -41,7 +41,10 @@
 #include <iostream>
 #include "..\Galt-Engine\Window.h"
 #include "..\Galt-Engine\Camera.h"
+#include "..\Galt-Engine\Timer.h"
 #include <ctime>
+
+using namespace GaltE;
 
 const float yCMovement = 20;
 const float xCMovement = 20;
@@ -51,7 +54,7 @@ int main()
 
 	//create the window
 	std::string title = "Engine V.01";
-	GaltE::Window window(800, 600, false, title);
+	Window window(800, 600, false, title);
 
 	window.setColor(sf::Color::Blue);
 
@@ -65,39 +68,39 @@ int main()
 	shape2.setPosition(1000, 1000);
 
 	//camera test
-	GaltE::Camera camera1(sf::FloatRect(50, 50, 800, 600));
+	Camera camera1(sf::FloatRect(50, 50, 800, 600));
 
 	//Get Event
 	sf::Event * winEvent = window.getEvent();
 
 	//Start a timer
-	sf::Clock clock;
-	sf::Time deltaT;
+	Timer time;
+	float deltaT = 0;
 
 	while (window.isOpen())
 	{
 		window.clear();
 
 		//get change in time
-		deltaT = clock.restart();
-		std::cout << deltaT.asSeconds() << std::endl;
+		deltaT = time.restart();
+		std::cout << deltaT << std::endl;
 
 		//check for keyboard input
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		{
-			camera1.move(0, -(yCMovement * deltaT.asSeconds()));
+			camera1.move(0, -(yCMovement * deltaT));
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
-			camera1.move(0, yCMovement * deltaT.asSeconds());
+			camera1.move(0, yCMovement * deltaT);
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		{
-			camera1.move(-(xCMovement * deltaT.asSeconds()), 0);
+			camera1.move(-(xCMovement * deltaT), 0);
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
-			camera1.move(xCMovement * deltaT.asSeconds(), 0);
+			camera1.move(xCMovement * deltaT, 0);
 		}
 
 		window.draw(shape1);

@@ -42,6 +42,7 @@
 #include "..\Galt-Engine\Window.h"
 #include "..\Galt-Engine\Camera.h"
 #include "..\Galt-Engine\Timer.h"
+#include "..\Galt-Engine\KeyInput.h"
 #include <ctime>
 
 using namespace GaltE;
@@ -77,6 +78,9 @@ int main()
 	Timer time;
 	float deltaT = 0;
 
+	//Set up KeyInput
+	KeyInput keyInput;
+
 	while (window.isOpen())
 	{
 		window.clear();
@@ -86,19 +90,19 @@ int main()
 		std::cout << deltaT << std::endl;
 
 		//check for keyboard input
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		if (keyInput.W())
 		{
 			camera1.move(0, -(yCMovement * deltaT));
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		if (keyInput.S())
 		{
 			camera1.move(0, yCMovement * deltaT);
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		if (keyInput.A())
 		{
 			camera1.move(-(xCMovement * deltaT), 0);
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		if (keyInput.D())
 		{
 			camera1.move(xCMovement * deltaT, 0);
 		}

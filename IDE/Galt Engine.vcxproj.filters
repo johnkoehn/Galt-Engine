@@ -30,6 +30,9 @@
     <ClInclude Include="..\Src\Galt-Engine\Timer.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\Src\Galt-Engine\KeyInput.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">

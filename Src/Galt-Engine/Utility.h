@@ -13,12 +13,7 @@ namespace GaltE
 	{
 	public:
 		
-		/**
-		* Function calculates the absolute value. Well, I'm an airhead 
-		* for not relizing c++ had an abs function, derp derp derp.
-		*/
-		//template<class TYPE>
-		//TYPE abs(TYPE date);
+		
 	};
 }
 

@@ -18,73 +18,74 @@ namespace GaltE
 	class Particle
 	{
 	private:
-		PhyVec<float> position;
-		PhyVec<float> velocity;
+		PhyVec<float>* position;
+		PhyVec<float>* velocity;
 		double mass;
-		float lifetime;
+		float lifeTime;
 		bool dead;
-		bool haveLifetime;
+		bool haveLifeTime;
 		Timer* time;
 
 	public:
 		/**
-		* If you which for no lifeTimer, set the inital lifetime value 
-		* to zero.
+		* If you wish for no lifeTimer, set the inital lifetime value 
+		* to zero or a negative value.
 		*/
-		Particle(const PhyVec<float>& pos, const PhyVec<float>& vel, double mass, float lifetime);
+		Particle(const PhyVec<float>& pos, const PhyVec<float>& vel, double mMass, float mLifeTime);
 
-		Particle(float xPos, float yPos, float xVel, float yVel, double mass, float lifetime);
+		Particle(float xPos, float yPos, float xVel, float yVel, double mMass, float mLifeTime);
 
 		~Particle();
 
 		/**
-		* Updates the position of the particle based on the change in time 
+		* Updates the position of the particle based on the change in time. This change in time should be given from the particle emitter since
+		* the last round of updates
 		*/
-		void updatePos();
+		void updatePos(float deltaT);
 
 		/**
 		* Changes the particle's velocity x value
 		*/
-		void setVelX(float x) { velocity.x = x; }
+		void setVelX(float x) { velocity->x = x; }
 
 		/**
 		* changes the particle's velocity y value
 		*/
-		void setVelY(float y) { velocity.y = y; }
+		void setVelY(float y) { velocity->y = y; }
 
 		/**
 		* Changes the particle's position x value
 		*/
-		void setPosX(float x);
+		void setPosX(float x) { position->x = x; }
 
 		/**
 		* changes the particle's position y value
 		*/
-		void setPosY(float y);
+		void setPosY(float y) { position->y = y; }
 
 		/**
 		* Increases the particle's velocity x value
 		* by given amount
 		*/
-		void velXInc(float deltaX) { velocity.x += deltaX; }
+		void velXInc(float deltaX) { velocity->x += deltaX; }
 
 		/**
 		* Increases the particle's velocity y value
 		* by given amount
 		*/
-		void velYInc(float deltaY) { velocity.y += deltaY; }
+		void velYInc(float deltaY) { velocity->y += deltaY; }
 
 		/**
 		* Increases the particle's position x value
 		* by given amount
 		*/
-		void posXInc(float deltaX);
+		void posXInc(float deltaX) { position->x += deltaX; }
 
 		/**
 		* Increases the particle's position y value
 		* by given amount
 		*/
-		void posYInc(float deltaY);
+		void posYInc(float deltaY) { position->y += deltaY; }
 
 		/**
 		* Set the particle to being dead
@@ -111,22 +112,22 @@ namespace GaltE
 		* Increases the lifetime the particle has. If the particle wasn't set to have a lifeTime before, it will
 		* now be set to have a lifeTime.
 		*/
-		void increaseLifeTime(float time);
+		void increaseLifeTime(float additionalTime);
 
 		/**
 		* Checks if the particle is dead
 		*/
-		bool isDead() { return dead; }
+		bool isDead();
 
 		/**
 		* Get the particle's velocity as a PhyVec
 		*/
-		PhyVec<float> getVelocitiy() { return velocity; }
+		PhyVec<float> getVelocitiy() { return *velocity; }
 
 		/**
 		* Get the particle's position as a PhyVec
 		*/
-		PhyVec<float> getPosition() { return position; }
+		PhyVec<float> getPosition() { return *position; }
 
 		/**
 		* Get the time that has passed in seconds since the particle was emitted
@@ -146,7 +147,13 @@ namespace GaltE
 		/**
 		* Returns the mass of the particle
 		*/
-		double mass() { return mass; }
+		double getMass() { return mass; }
+
+		/**
+		* Operator allows you to add additional time to a particle's lifeTime
+		* Example: particle1 += 0.5f
+		*/
+		void operator+(float additionalTime);
 
 	};
 }

@@ -124,7 +124,7 @@ namespace GaltE
 		/**
 		* Returns a Vector2f of the x and y values 
 		*/
-		sf::Vector2f getVector2f() const { return sf::Vector2f(x, y); }
+		sf::Vector2f getVector2f() const { return sf::Vector2f((float)x, (float)y); }
 
 		/**
 		* Operator to preform the dot proudct

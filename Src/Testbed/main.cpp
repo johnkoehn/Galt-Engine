@@ -38,12 +38,7 @@
 
 
 
-#include <iostream>
-#include "..\Galt-Engine\Window.h"
-#include "..\Galt-Engine\Camera.h"
-#include "..\Galt-Engine\Timer.h"
-#include "..\Galt-Engine\KeyInput.h"
-#include <ctime>
+#include "Includes.h"
 
 using namespace GaltE;
 
@@ -69,7 +64,7 @@ int main()
 	shape2.setPosition(1000, 1000);
 
 	//camera test
-	Camera camera1(sf::FloatRect(50, 50, 800, 600));
+	Camera camera1(sf::FloatRect(0, 0, 800, 600));
 
 	//Get Event
 	sf::Event * winEvent = window.getEvent();
@@ -80,6 +75,18 @@ int main()
 
 	//Set up KeyInput
 	KeyInput keyInput;
+
+	//particle test 
+	ParticleData data;
+	data.xPos = 30;
+	data.yPos = 30;
+	data.xVel = 100;
+	data.yVel = 100;
+	data.mass = 0;
+	data.lifeTime = 0;
+	data.particleColor = sf::Color::Red;
+	Particle particle(data);
+
 
 	while (window.isOpen())
 	{
@@ -107,8 +114,11 @@ int main()
 			camera1.move(xCMovement * deltaT, 0);
 		}
 
+		particle.update(deltaT);
+		
 		window.draw(shape1);
 		window.draw(shape2);
+		particle.drawParticle(window);
 		window.setCamera(camera1);
 		window.display();
 

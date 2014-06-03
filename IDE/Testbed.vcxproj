@@ -13,6 +13,9 @@
   <ItemGroup>
     <ClCompile Include="..\Src\Testbed\main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Src\Testbed\Includes.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BAC170EE-7772-4A5B-B6D1-99DB76BE01F1}</ProjectGuid>
     <RootNamespace>Tester</RootNamespace>

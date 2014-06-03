@@ -15,6 +15,7 @@ Particle::Particle(const ParticleData& data)
 	//set the vertex array using sfml point
 	particle = new sf::VertexArray(sf::Points, 1);
 	(*particle)[0].position = position->getVector2f();
+	(*particle)[0].color = data.particleColor;
 }
 
 Particle::~Particle()
@@ -32,7 +33,7 @@ void Particle::update(float deltaT)
 	if (haveLifeTime)
 	{
 		timePassed += deltaT;
-	}
+	}  
 }
 
 double Particle::momentum()
@@ -62,4 +63,12 @@ bool Particle::isDead()
 	}
 	
 	return dead;
+}
+
+void Particle::drawParticle(Window& window)
+{
+	//update the particle position
+	(*particle)[0].position = position->getVector2f();
+	
+	window.draw(*particle);
 }

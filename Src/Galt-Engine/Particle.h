@@ -9,31 +9,44 @@
 namespace GaltE
 {
 	/**
+	* Structure is used to pass data on the particle
+	*/
+	struct ParticleData
+	{
+		float xPos, yPos;
+		float xVel, yVel;
+		double mass;
+		float lifeTime;
+		sf::Color particleColor;
+	};
+
+	/**
 	* This class contains the necessary data to make a particle
 	* Particles have various features, such as their current location,
 	* velocity and mass. Particles will also have the option to have a emittion
 	* time. If the time is succeded the particle is considered to be "dead."
 	* Other options will later be added to let a particle be considered "dead."
+	* Something imporatant to note about using the particle system is that the timePassed only increases
+	* after particle update is called.
 	*/
 	class Particle
 	{
 	private:
+		sf::VertexArray* particle;
 		PhyVec<float>* position;
 		PhyVec<float>* velocity;
 		double mass;
-		float lifeTime;
 		bool dead;
+		float lifeTime;
 		bool haveLifeTime;
-		Timer* time;
+		float timePassed;
 
 	public:
 		/**
 		* If you wish for no lifeTimer, set the inital lifetime value 
 		* to zero or a negative value.
 		*/
-		Particle(const PhyVec<float>& pos, const PhyVec<float>& vel, double mMass, float mLifeTime);
-
-		Particle(float xPos, float yPos, float xVel, float yVel, double mMass, float mLifeTime);
+		Particle(const ParticleData& data);
 
 		~Particle();
 
@@ -41,7 +54,7 @@ namespace GaltE
 		* Updates the position of the particle based on the change in time. This change in time should be given from the particle emitter since
 		* the last round of updates
 		*/
-		void updatePos(float deltaT);
+		void update(float deltaT);
 
 		/**
 		* Changes the particle's velocity x value
@@ -132,12 +145,7 @@ namespace GaltE
 		/**
 		* Get the time that has passed in seconds since the particle was emitted
 		*/
-		float getTimePassed() { return time->getTimeElapsed(); }
-
-		/**
-		* Get the pointer of the timer object of the particle
-		*/
-		Timer* getTimer() { return time; }
+		float getTimePassed() { return timePassed; }
 
 		/**
 		* Returns the calculated momentum of the particle
@@ -150,12 +158,12 @@ namespace GaltE
 		double getMass() { return mass; }
 
 		/**
-		* Operator allows you to add additional time to a particle's lifeTime
-		* Example: particle1 += 0.5f
+		* Method draws the particle to the window
 		*/
-		void operator+(float additionalTime);
+		void drawParticle(Window& window);
 
 	};
+
 }
 
 

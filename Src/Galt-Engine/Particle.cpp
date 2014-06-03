@@ -2,55 +2,37 @@
 
 using namespace GaltE;
 
-Particle::Particle(const PhyVec<float>& pos, const PhyVec<float>& vel, double mMass, float mLifeTime)
+Particle::Particle(const ParticleData& data)
 {
-	*position = pos;
-	*velocity = vel;
-	mass = mMass;
-	lifeTime = mLifeTime;
+	position = new PhyVec<float>(data.xPos, data.yPos);
+	velocity = new PhyVec<float>(data.xVel, data.yVel);
+	mass = data.mass;
+	lifeTime = data.lifeTime;
 	dead = false;
+	timePassed = 0;
+	haveLifeTime = lifeTime > 0;
 
-	if (lifeTime <= 0)
-	{
-		haveLifeTime = false;
-	}
-	else
-	{
-		haveLifeTime = true;
-	}
-	time = new Timer();
-}
-
-Particle::Particle(float xPos, float yPos, float xVel, float yVel, double mMass, float mLifeTime)
-{
-	position = new PhyVec<float>(xPos, yPos);
-	velocity = new PhyVec<float>(xVel, yVel);
-	mass = mMass;
-	lifeTime = mLifeTime;
-	dead = false;
-
-	if (lifeTime <= 0)
-	{
-		haveLifeTime = false;
-	}
-	else
-	{
-		haveLifeTime = true;
-	}
-	time = new Timer();
+	//set the vertex array using sfml point
+	particle = new sf::VertexArray(sf::Points, 1);
+	(*particle)[0].position = position->getVector2f();
 }
 
 Particle::~Particle()
 {
 	delete position;
 	delete velocity;
-	delete time;
 }
 
-void Particle::updatePos(float deltaT)
+void Particle::update(float deltaT)
 {
 	position->x += (velocity->x * deltaT);
 	position->y += (velocity->y * deltaT);
+
+	//if the particle has a life time, update the time passed
+	if (haveLifeTime)
+	{
+		timePassed += deltaT;
+	}
 }
 
 double Particle::momentum()
@@ -62,8 +44,7 @@ void Particle::setLifeTime(float newTime)
 {
 	haveLifeTime = true;
 
-	//get the time since the particle was created and add its value for lifetime 
-	lifeTime = time->getTimeElapsed() + newTime;
+	lifeTime = newTime;
 }
 
 void Particle::increaseLifeTime(float additionalTime)
@@ -77,16 +58,8 @@ bool Particle::isDead()
 	//check if the particle is on a timer, if so check if its lifeTime has expired
 	if (haveLifeTime)
 	{
-		if (lifeTime <= time->getTimeElapsed())
-		{
-			dead = true;
-		}
+		dead = lifeTime <= timePassed;
 	}
 	
 	return dead;
-}
-
-void Particle::operator+(float additionalTime)
-{
-	this->increaseLifeTime(additionalTime);
 }

@@ -83,7 +83,7 @@ int main()
 	data.xVel = 100;
 	data.yVel = 100;
 	data.mass = 0;
-	data.lifeTime = 0;
+	data.lifeTime = 5;
 	data.particleColor = sf::Color::Red;
 	Particle particle(data);
 
@@ -94,7 +94,6 @@ int main()
 
 		//get change in time
 		deltaT = time.restart();
-		std::cout << deltaT << std::endl;
 
 		//check for keyboard input
 		if (keyInput.W())
@@ -118,7 +117,11 @@ int main()
 		
 		window.draw(shape1);
 		window.draw(shape2);
-		particle.drawParticle(window);
+		if (!(particle.isDead()))
+		{
+			particle.drawParticle(window);
+			std::cout << "Time passed: " << particle.getTimePassed() << std::endl;
+		}
 		window.setCamera(camera1);
 		window.display();
 

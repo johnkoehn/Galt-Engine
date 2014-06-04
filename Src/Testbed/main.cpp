@@ -76,16 +76,9 @@ int main()
 	//Set up KeyInput
 	KeyInput keyInput;
 
-	//particle test 
-	ParticleData data;
-	data.xPos = 30;
-	data.yPos = 30;
-	data.xVel = 100;
-	data.yVel = 100;
-	data.mass = 0;
-	data.lifeTime = 5;
-	data.particleColor = sf::Color::Red;
-	Particle particle(data);
+	//particle emitter test
+	ParticleEmitter emitter(30, 30, 100, sf::Color::Red, 1.0f);
+	emitter.begin(10);
 
 
 	while (window.isOpen())
@@ -113,16 +106,10 @@ int main()
 		{
 			camera1.move(xCMovement * deltaT, 0);
 		}
-
-		particle.update(deltaT);
 		
+		emitter.draw(window);
 		window.draw(shape1);
 		window.draw(shape2);
-		if (!(particle.isDead()))
-		{
-			particle.drawParticle(window);
-			//std::cout << "Time passed: " << particle.getTimePassed() << std::endl;
-		}
 		window.setCamera(camera1);
 		window.display();
 

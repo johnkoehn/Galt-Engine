@@ -42,7 +42,10 @@ namespace GaltE
 		ParticleEmitter(float xPos, float yPos, int intensity, sf::Color particleColor, float particleLifeTime);
 
 		/**
-		* This is start the emitting of particles/
+		* This starts the emitting of particles, pass in the amount of inital particles 
+		* to create.
+		*/
+		void begin(int amount);
 
 		/**
 		* Method updates the particles and then draw them to the screen

@@ -17,16 +17,21 @@ ParticleEmitter::ParticleEmitter(float xPos, float yPos, int intensity, sf::Colo
 
 void ParticleEmitter::update()
 {
-	float timeDelta = time->getTimeElapsed();
+	float timeDelta = time->restart();
 	std::list<Particle>::iterator i;
+	i = mParticles.begin();
 
 	//update old particles and eliminate those that exceeded their lifeTime
-	for (i = mParticles.begin(); i != mParticles.end(); ++i)
+	while (i != mParticles.end())
 	{
 		i->update(timeDelta);
 		if (i->isDead())
 		{
-			mParticles.erase(i);
+			i = mParticles.erase(i);
+		}
+		else
+		{
+			++i;
 		}
 	}
 
@@ -55,7 +60,7 @@ void ParticleEmitter::addParticles(int particlesToAdd)
 			mData.xVel *= -1;
 		}
 
-		mData.yVel = (20 + (rand() % 10));
+		mData.yVel = (float)(20 + (rand() % 10));
 		if ((int)(rand() % 2))
 		{
 			mData.yVel *= -1;
@@ -64,4 +69,25 @@ void ParticleEmitter::addParticles(int particlesToAdd)
 		Particle tempParticle(mData);
 		mParticles.push_back(tempParticle);
 	}
+}
+
+void ParticleEmitter::draw(Window& window)
+{
+	if (time == NULL)
+	{
+		std::cerr << "Particle Emitter hasn't started!\n";
+		return;
+	}
+	update();
+	std::list<Particle>::iterator i;
+	for (i = mParticles.begin(); i != mParticles.end(); ++i)
+	{
+		i->drawParticle(window);
+	}
+}
+
+void ParticleEmitter::begin(int amount)
+{
+	addParticles(amount);
+	time = new Timer();
 }

@@ -94,6 +94,7 @@ int main()
 
 		//get change in time
 		deltaT = time.restart();
+		std::cout << deltaT << std::endl;
 
 		//check for keyboard input
 		if (keyInput.W())
@@ -120,7 +121,7 @@ int main()
 		if (!(particle.isDead()))
 		{
 			particle.drawParticle(window);
-			std::cout << "Time passed: " << particle.getTimePassed() << std::endl;
+			//std::cout << "Time passed: " << particle.getTimePassed() << std::endl;
 		}
 		window.setCamera(camera1);
 		window.display();

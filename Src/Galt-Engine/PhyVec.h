@@ -36,6 +36,11 @@ namespace GaltE
 			y = 0;
 		}
 
+		~PhyVec()
+		{
+
+		}
+
 		/**
 		* Change x and y value by an amount
 		*/

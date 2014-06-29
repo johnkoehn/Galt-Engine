@@ -13,15 +13,16 @@ Particle::Particle(const ParticleData& data)
 	haveLifeTime = lifeTime > 0;
 
 	//set the vertex array using sfml point
-	particle = new sf::VertexArray(sf::Points, 1);
-	(*particle)[0].position = position->getVector2f();
-	(*particle)[0].color = data.particleColor;
+	particle.setPrimitiveType(sf::Points);
+	particle.resize(1);
+	particle[0].color = data.particleColor;
+	particle[0].position = position->getVector2f();
 }
 
 Particle::~Particle()
 {
-	delete position;
-	delete velocity;
+	position = NULL;
+	velocity = NULL;
 }
 
 void Particle::update(float deltaT)
@@ -59,7 +60,10 @@ bool Particle::isDead()
 	//check if the particle is on a timer, if so check if its lifeTime has expired
 	if (haveLifeTime)
 	{
-		dead = lifeTime <= timePassed;
+		if (timePassed >= lifeTime)
+		{
+			dead = true;
+		}
 	}
 	
 	return dead;
@@ -68,7 +72,7 @@ bool Particle::isDead()
 void Particle::drawParticle(Window& window)
 {
 	//update the particle position
-	(*particle)[0].position = position->getVector2f();
+	particle[0].position = position->getVector2f();
 	
-	window.draw(*particle);
+	window.draw(particle);
 }

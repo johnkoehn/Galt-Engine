@@ -32,7 +32,7 @@ namespace GaltE
 	class Particle
 	{
 	private:
-		sf::VertexArray* particle;
+		sf::VertexArray particle;
 		PhyVec<float>* position;
 		PhyVec<float>* velocity;
 		double mass;

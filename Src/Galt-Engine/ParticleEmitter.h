@@ -17,15 +17,14 @@ namespace GaltE
 	private:
 		ParticleData mData;
 		int mIntensity;
-		std::list<Particle> mParticles;
-		Timer* time;
+		std::vector<Particle> mParticles;
 		float extraTime;
 
 		/**
-		* Method updates the particles position, removes particles that 
+		* Method updates the particles position, removes particles that
 		* have gone over their lifeTime and adds new ones based on the intensity
 		*/
-		void update();
+		void update(float timeDelta);
 
 		/**
 		* adds the number of particles that need to be added
@@ -40,6 +39,7 @@ namespace GaltE
 		* particleLifeTime is the time in seconds each particle will be alive
 		*/
 		ParticleEmitter(float xPos, float yPos, int intensity, sf::Color particleColor, float particleLifeTime);
+		~ParticleEmitter();
 
 		/**
 		* This starts the emitting of particles, pass in the amount of inital particles 
@@ -50,7 +50,7 @@ namespace GaltE
 		/**
 		* Method updates the particles and then draw them to the screen
 		*/
-		void draw(Window& window);
+		void draw(Window& window, float timeDelta);
 
 		/**
 		* Method sets the intensity of the emitter to zero

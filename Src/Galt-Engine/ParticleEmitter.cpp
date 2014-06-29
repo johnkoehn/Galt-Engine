@@ -2,6 +2,8 @@
 
 using namespace GaltE;
 
+#define MAXPARTICLES 10000
+
 ParticleEmitter::ParticleEmitter(float xPos, float yPos, int intensity, sf::Color particleColor, float particleLifeTime)
 {
 	mData.xPos = xPos;
@@ -9,29 +11,26 @@ ParticleEmitter::ParticleEmitter(float xPos, float yPos, int intensity, sf::Colo
 	mIntensity = intensity;
 	mData.particleColor = particleColor;
 	mData.lifeTime = particleLifeTime;
-	time = NULL;
 	extraTime = 0;
+	mParticles.reserve(MAXPARTICLES);
 
+	//set seed
 	srand(std::time(NULL));
 }
 
-void ParticleEmitter::update()
+ParticleEmitter::~ParticleEmitter()
 {
-	float timeDelta = time->restart();
-	std::list<Particle>::iterator i;
-	i = mParticles.begin();
+}
 
+void ParticleEmitter::update(float timeDelta)
+{
 	//update old particles and eliminate those that exceeded their lifeTime
-	while (i != mParticles.end())
+	for (int i = 0; i < mParticles.size(); i++)
 	{
-		i->update(timeDelta);
-		if (i->isDead())
+		mParticles[i].update(timeDelta);
+		if (mParticles[i].isDead())
 		{
-			i = mParticles.erase(i);
-		}
-		else
-		{
-			++i;
+			mParticles.erase(mParticles.begin()+i);
 		}
 	}
 
@@ -71,23 +70,21 @@ void ParticleEmitter::addParticles(int particlesToAdd)
 	}
 }
 
-void ParticleEmitter::draw(Window& window)
+void ParticleEmitter::draw(Window& window, float timeDelta)
 {
 	if (time == NULL)
 	{
 		std::cerr << "Particle Emitter hasn't started!\n";
 		return;
 	}
-	update();
-	std::list<Particle>::iterator i;
-	for (i = mParticles.begin(); i != mParticles.end(); ++i)
+	update(timeDelta);
+	for (int i = 0; i < mParticles.size(); i++)
 	{
-		i->drawParticle(window);
+		mParticles[i].drawParticle(window);
 	}
 }
 
 void ParticleEmitter::begin(int amount)
 {
 	addParticles(amount);
-	time = new Timer();
 }

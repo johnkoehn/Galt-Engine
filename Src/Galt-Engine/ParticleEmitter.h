@@ -20,7 +20,6 @@ namespace GaltE
 		std::vector<Particle> mParticles;
 		float mExtraTime;
 		float mTotalTime;
-		float mTimeSinceClean;
 
 		/**
 		* Method updates the particles position, removes particles that
@@ -34,9 +33,9 @@ namespace GaltE
 		void addParticles(int particlesToAdd);
 
 		/**
-		* Method cleans up memory in the particles vector by removing "dead" ones
+		* Method updates the particles positions and removes "dead" particles
 		*/
-		void cleanUp();
+		void updateParticles(float timeDelta);
 
 	public:
 		/*

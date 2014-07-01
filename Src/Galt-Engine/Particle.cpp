@@ -36,6 +36,7 @@ void Particle::update(float deltaT)
 		if (haveLifeTime)
 		{
 			timePassed += deltaT;
+			isDead();
 		}
 	}
 

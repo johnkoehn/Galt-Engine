@@ -27,14 +27,18 @@ Particle::~Particle()
 
 void Particle::update(float deltaT)
 {
-	position->x += (velocity->x * deltaT);
-	position->y += (velocity->y * deltaT);
-
-	//if the particle has a life time, update the time passed
-	if (haveLifeTime)
+	if (!dead)
 	{
-		timePassed += deltaT;
-	}  
+		position->x += (velocity->x * deltaT);
+		position->y += (velocity->y * deltaT);
+
+		//if the particle has a life time, update the time passed
+		if (haveLifeTime)
+		{
+			timePassed += deltaT;
+		}
+	}
+
 }
 
 double Particle::momentum()
@@ -70,9 +74,12 @@ bool Particle::isDead()
 }
 
 void Particle::drawParticle(Window& window)
-{
-	//update the particle position
-	particle[0].position = position->getVector2f();
-	
-	window.draw(particle);
+{	
+	if (!dead)
+	{
+		//update the particle position
+		particle[0].position = position->getVector2f();
+		window.draw(particle);
+	}
+
 }

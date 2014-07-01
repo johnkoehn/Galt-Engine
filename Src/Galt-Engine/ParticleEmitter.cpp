@@ -2,7 +2,7 @@
 
 using namespace GaltE;
 
-#define MAXPARTICLES 10000
+#define ClEANTIME 5.5f
 
 ParticleEmitter::ParticleEmitter(float xPos, float yPos, int intensity, sf::Color particleColor, float particleLifeTime)
 {
@@ -11,8 +11,10 @@ ParticleEmitter::ParticleEmitter(float xPos, float yPos, int intensity, sf::Colo
 	mIntensity = intensity;
 	mData.particleColor = particleColor;
 	mData.lifeTime = particleLifeTime;
-	extraTime = 0;
-	mParticles.reserve(MAXPARTICLES);
+	mExtraTime = 0;
+	mTotalTime = 0;
+	mTimeSinceClean = 0;
+	mParticles.reserve(0);
 
 	//set seed
 	srand(std::time(NULL));
@@ -24,28 +26,37 @@ ParticleEmitter::~ParticleEmitter()
 
 void ParticleEmitter::update(float timeDelta)
 {
+	mTotalTime += timeDelta;
+	mTimeSinceClean += timeDelta;
+	mExtraTime += timeDelta;
+
 	//update old particles and eliminate those that exceeded their lifeTime
 	for (int i = 0; i < mParticles.size(); i++)
 	{
 		mParticles[i].update(timeDelta);
 		if (mParticles[i].isDead())
 		{
-			mParticles.erase(mParticles.begin()+i);
+			mParticles.erase(mParticles.begin() + i);
 		}
 	}
 
 	//now add particles based on intensity * deltaT
-	int particlesToAdd = (int)mIntensity * (timeDelta + extraTime);
-	
-	if (particlesToAdd == 0)
+	int particlesToAdd = (int)(mIntensity * timeDelta);
+
+	if (particlesToAdd >= 1)
 	{
-		extraTime += timeDelta;
-	}
-	else
-	{
-		extraTime = 0;
+		//TODO We have an inconsitent extraTime, eventually, someTime will be left out, thus less particles will get add
+		//then should be
+		mExtraTime = 0;
 		addParticles(particlesToAdd);
 	}
+
+	//check if memory cleanup in necessary
+	/*if (mTimeSinceClean > ClEANTIME)
+	{
+		cleanUp();
+		mTimeSinceClean = 0;
+	}*/
 }
 
 void ParticleEmitter::addParticles(int particlesToAdd)
@@ -86,5 +97,32 @@ void ParticleEmitter::draw(Window& window, float timeDelta)
 
 void ParticleEmitter::begin(int amount)
 {
+	/*
+	* To calculate the maximum number of particles needed for the vector to hold 
+	* we use the following formula:
+	* (Intensity * particle lifetime or cleanup time (depending on which is longer)) + inital burst value + 0.5
+	*/
+	float multiplyer = 0;
+	if (ClEANTIME > mData.lifeTime)
+	{
+		multiplyer = ClEANTIME;
+	}
+	else
+	{
+		multiplyer = mData.lifeTime;
+	}
+	int maxSize = (int)((mIntensity * multiplyer) + amount + 0.5);
+	mParticles.reserve(maxSize);
 	addParticles(amount);
+}
+
+void ParticleEmitter::cleanUp()
+{
+	for (int i = 0; i < mParticles.size(); i++)
+	{
+		if (mParticles[i].isDead())
+		{
+			mParticles.erase(mParticles.begin() + i);
+		}
+	}
 }

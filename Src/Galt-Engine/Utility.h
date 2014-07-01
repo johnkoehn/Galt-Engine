@@ -1,7 +1,7 @@
 #ifndef UTILITY_H
 #define UTILITY_H
 
-
+#define PI 3.14159
 
 namespace GaltE
 {

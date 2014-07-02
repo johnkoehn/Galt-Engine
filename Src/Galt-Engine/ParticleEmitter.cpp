@@ -54,7 +54,7 @@ void ParticleEmitter::addParticles(int particlesToAdd)
 		{
 			//get random speed and angle in radians, then convert that to velocity
 			//TODO Allow user to set a max particle speed
-			float speed = (20 + (rand() % 10));
+			float speed = (50 + (rand() % 10));
 			float angle = (rand() % 360) * (PI / 180);
 
 			mData.xVel = speed * cos(angle);
@@ -80,11 +80,11 @@ void ParticleEmitter::addParticles(int particlesToAdd)
 					mParticles[iterator].reset();
 
 					//set new speed
-					float speed = (20 + (rand() % 10));
+					float speed = (50 + (rand() % 10));
 					float angle = (rand() % 360) * (PI / 180);
 
-					mParticles[iterator].setPosX(speed * cos(angle));
-					mParticles[iterator].setPosY(speed * sin(angle));
+					mParticles[iterator].setVelX(speed * cos(angle));
+					mParticles[iterator].setVelY(speed * sin(angle));
 				}
 				iterator += 1;
 			}

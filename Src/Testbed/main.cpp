@@ -77,11 +77,11 @@ int main()
 	KeyInput keyInput;
 
 	//particle emitter test
-	ParticleEmitter emitter(200, 200, 1000, sf::Color::Red, 1.0f);
+	ParticleEmitter emitter(100, 100, 1000, sf::Color::Red, 2.0f);
 	emitter.begin(10);
 
-	//ParticleEmitter emitter2(60, 60, 100, sf::Color::Red, 1.0f);
-	//emitter2.begin(10);
+	ParticleEmitter emitter2(60, 60, 100, sf::Color::Red, 1.0f);
+	emitter2.begin(2000);
 
 
 	while (window.isOpen())
@@ -110,7 +110,7 @@ int main()
 			camera1.move(xCMovement * deltaT, 0);
 		}
 		emitter.draw(window, deltaT);
-		//emitter2.draw(window, deltaT);
+		emitter2.draw(window, deltaT);
 		window.draw(shape1);
 		window.draw(shape2);
 		window.setCamera(camera1);

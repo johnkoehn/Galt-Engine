@@ -1,0 +1,18 @@
+Galt Engine Basic todo outline:
+
+Particle System:
+	-Optimize:
+		1. Have it lessen the vector size after the "inital burst"
+		2. Have alive particles in the front buffer, dead particles in the back buffer
+		3. Multithreading???
+		
+	-Physics:
+		1. Gravity balls will "suck" the particles
+	
+Rigid body system:
+	-Collision of two rectangles
+	
+Clean up:
+	-delta Times to time delta
+	-when to use constant reference, when to not
+	-Get release build to work

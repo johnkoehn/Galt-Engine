@@ -9,11 +9,11 @@ Particle::Particle(const ParticleData& data)
 	originalY = data.yPos;
 
 	velocity = new PhyVec<float>(data.xVel, data.yVel);
+
 	mass = data.mass;
 	lifeTime = data.lifeTime;
-	dead = false;
-	timePassed = 0;
-	haveLifeTime = lifeTime > 0;
+	alive = true;
+	timePassed = 0.0f;
 
 	//set the vertex array using sfml point
 	particle.setPrimitiveType(sf::Points);
@@ -28,19 +28,16 @@ Particle::~Particle()
 	velocity = NULL;
 }
 
-void Particle::update(float deltaT)
+void Particle::update(float timeDelta)
 {
-	if (!dead)
+	//if the particle is alive, update position and timePassed
+	if (alive)
 	{
-		position->x += (velocity->x * deltaT);
-		position->y += (velocity->y * deltaT);
-
-		//if the particle has a life time, update the time passed
-		if (haveLifeTime)
-		{
-			timePassed += deltaT;
-			isDead();
-		}
+		position->x += (velocity->x * timeDelta);
+		position->y += (velocity->y * timeDelta);
+		
+		timePassed += timeDelta;
+		isAlive();
 	}
 
 }
@@ -52,34 +49,28 @@ double Particle::momentum()
 
 void Particle::setLifeTime(float newTime)
 {
-	haveLifeTime = true;
-
 	lifeTime = newTime;
 }
 
 void Particle::increaseLifeTime(float additionalTime)
 {
-	haveLifeTime = true;
 	lifeTime += additionalTime;
 }
 
-bool Particle::isDead()
+bool Particle::isAlive()
 {
-	//check if the particle is on a timer, if so check if its lifeTime has expired
-	if (haveLifeTime)
+	//check if lifetime exceeded
+	if (timePassed >= lifeTime)
 	{
-		if (timePassed >= lifeTime)
-		{
-			dead = true;
-		}
+		alive = false;
 	}
 	
-	return dead;
+	return alive;
 }
 
 void Particle::drawParticle(Window& window)
 {	
-	if (!dead)
+	if (alive)
 	{
 		//update the particle position
 		particle[0].position = position->getVector2f();
@@ -90,7 +81,7 @@ void Particle::drawParticle(Window& window)
 
 void Particle::reset()
 {
-	dead = false;
+	alive = true;
 	timePassed = 0;
 
 	position->x = originalX;

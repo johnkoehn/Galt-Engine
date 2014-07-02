@@ -23,7 +23,7 @@ namespace GaltE
 	/**
 	* This class contains the necessary data to make a particle
 	* Particles have various features, such as their current location,
-	* velocity and mass. Particles will also have the option to have a emittion
+	* velocity and mass. Particles will have an emittion
 	* time. If the time is succeded the particle is considered to be "dead."
 	* Other options will later be added to let a particle be considered "dead."
 	* Something imporatant to note about using the particle system is that the timePassed only increases
@@ -38,9 +38,8 @@ namespace GaltE
 		float originalX;
 		float originalY;
 		double mass;
-		bool dead;
+		bool alive;
 		float lifeTime;
-		bool haveLifeTime;
 		float timePassed;
 
 	public:
@@ -56,7 +55,7 @@ namespace GaltE
 		* Updates the position of the particle based on the change in time. This change in time should be given from the particle emitter since
 		* the last round of updates
 		*/
-		void update(float deltaT);
+		void update(float timeDelta);
 
 		/**
 		* Changes the particle's velocity x value
@@ -105,7 +104,7 @@ namespace GaltE
 		/**
 		* Set the particle to being dead
 		*/
-		void setDead() { dead = true; }
+		void setDead() { alive = false; }
 
 		/**
 		* Increase the mass of the particle
@@ -130,9 +129,9 @@ namespace GaltE
 		void increaseLifeTime(float additionalTime);
 
 		/**
-		* Checks if the particle is dead
+		* Checks if the particle is alive
 		*/
-		bool isDead();
+		bool isAlive();
 
 		/**
 		* Get the particle's velocity as a PhyVec

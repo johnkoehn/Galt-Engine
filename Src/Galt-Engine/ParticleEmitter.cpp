@@ -44,19 +44,53 @@ void ParticleEmitter::update(float timeDelta)
 
 void ParticleEmitter::addParticles(int particlesToAdd)
 {
-	for (int i = 0; i < particlesToAdd; i++)
+	/**
+	* If the vector has been filled up with particles, 
+	* stop adding particales and reset the old particles
+	*/
+	if (mParticles.size() != mParticles.capacity())
 	{
-		//get random speed and angle in radians, then convert that to velocity
-		//TODO Allow user to set a max particle speed
-		float speed = (20 + (rand() % 10));
-		float angle = (rand() % 360) * (PI / 180);
+		for (int i = 0; i < particlesToAdd; i++)
+		{
+			//get random speed and angle in radians, then convert that to velocity
+			//TODO Allow user to set a max particle speed
+			float speed = (20 + (rand() % 10));
+			float angle = (rand() % 360) * (PI / 180);
 
-		mData.xVel = speed * cos(angle);
-		mData.yVel = speed * sin(angle);
+			mData.xVel = speed * cos(angle);
+			mData.yVel = speed * sin(angle);
 
-		Particle tempParticle(mData);
-		mParticles.push_back(tempParticle);
+			Particle tempParticle(mData);
+			mParticles.push_back(tempParticle);
+		}
 	}
+	else
+	{
+		bool found = false;
+		int iterator = 0;
+
+		for (int i = 0; i < particlesToAdd; i++)
+		{
+			found = false;
+			while (found != true)
+			{
+				if (mParticles[iterator].isDead())
+				{
+					found = true;
+					mParticles[iterator].reset();
+
+					//set new speed
+					float speed = (20 + (rand() % 10));
+					float angle = (rand() % 360) * (PI / 180);
+
+					mParticles[iterator].setPosX(speed * cos(angle));
+					mParticles[iterator].setPosY(speed * sin(angle));
+				}
+				iterator += 1;
+			}
+		}
+	}
+	
 }
 
 void ParticleEmitter::draw(Window& window, float timeDelta)
@@ -84,10 +118,9 @@ void ParticleEmitter::updateParticles(float timeDelta)
 {
 	for (int i = 0; i < mParticles.size(); i++)
 	{
-		mParticles[i].update(timeDelta);
-		if (mParticles[i].isDead())
+		if (!mParticles[i].isDead())
 		{
-			mParticles.erase(mParticles.begin() + i);
+			mParticles[i].update(timeDelta);
 		}
 	}
 }

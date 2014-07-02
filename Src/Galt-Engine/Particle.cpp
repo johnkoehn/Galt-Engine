@@ -5,6 +5,9 @@ using namespace GaltE;
 Particle::Particle(const ParticleData& data)
 {
 	position = new PhyVec<float>(data.xPos, data.yPos);
+	originalX = data.xPos;
+	originalY = data.yPos;
+
 	velocity = new PhyVec<float>(data.xVel, data.yVel);
 	mass = data.mass;
 	lifeTime = data.lifeTime;
@@ -83,4 +86,13 @@ void Particle::drawParticle(Window& window)
 		window.draw(particle);
 	}
 
+}
+
+void Particle::reset()
+{
+	dead = false;
+	timePassed = 0;
+
+	position->x = originalX;
+	position->y = originalY;
 }

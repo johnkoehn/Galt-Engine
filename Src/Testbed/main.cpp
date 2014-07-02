@@ -77,7 +77,7 @@ int main()
 	KeyInput keyInput;
 
 	//particle emitter test
-	ParticleEmitter emitter(30, 30, 1000, sf::Color::Red, 1.0f);
+	ParticleEmitter emitter(200, 200, 1000, sf::Color::Red, 1.0f);
 	emitter.begin(10);
 
 	//ParticleEmitter emitter2(60, 60, 100, sf::Color::Red, 1.0f);

@@ -35,6 +35,8 @@ namespace GaltE
 		sf::VertexArray particle;
 		PhyVec<float>* position;
 		PhyVec<float>* velocity;
+		float originalX;
+		float originalY;
 		double mass;
 		bool dead;
 		float lifeTime;
@@ -161,6 +163,11 @@ namespace GaltE
 		* Method draws the particle to the window
 		*/
 		void drawParticle(Window& window);
+
+		/**
+		* Method resets the particle, having time start at zero again and the position return to the origin
+		*/
+		void reset();
 
 	};
 

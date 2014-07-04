@@ -24,8 +24,6 @@ Particle::Particle(const ParticleData& data)
 
 Particle::~Particle()
 {
-	position = NULL;
-	velocity = NULL;
 }
 
 void Particle::update(float timeDelta)

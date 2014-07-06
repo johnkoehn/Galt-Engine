@@ -21,6 +21,7 @@
     <ClInclude Include="..\Src\Galt-Engine\Camera.h" />
     <ClInclude Include="..\Src\Galt-Engine\KeyInput.h" />
     <ClInclude Include="..\Src\Galt-Engine\Main.h" />
+    <ClInclude Include="..\Src\Galt-Engine\Mouse.h" />
     <ClInclude Include="..\Src\Galt-Engine\Particle.h" />
     <ClInclude Include="..\Src\Galt-Engine\ParticleEmitter.h" />
     <ClInclude Include="..\Src\Galt-Engine\Timer.h" />

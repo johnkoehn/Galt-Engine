@@ -104,6 +104,7 @@ void ParticleEmitter::draw(Window& window, float timeDelta)
 
 void ParticleEmitter::begin(int amount)
 {
+	//TODO, this shouldn't have to be used to initalize the emitter.
 	/*
 	* To calculate the maximum number of particles needed for the vector to hold 
 	* we use the following formula:

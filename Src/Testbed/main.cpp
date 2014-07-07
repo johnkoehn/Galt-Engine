@@ -76,6 +76,12 @@ int main()
 	//Set up KeyInput
 	KeyInput keyInput;
 
+	//Particle design pratice
+	//Particle p1();
+	//Particle p2();
+	//p1 = p2;
+
+
 	//particle emitter test
 	ParticleEmitter emitter(100, 100, 1000, sf::Color::Red, 2.0f);
 	emitter.begin(10);

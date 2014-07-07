@@ -42,7 +42,12 @@ namespace GaltE
 		float lifeTime;
 		float timePassed;
 
+		Particle() {}
+		Particle& operator=(Particle const&) {}
+
 	public:
+		
+
 		/**
 		* If you wish for no lifeTimer, set the inital lifetime value 
 		* to zero or a negative value.

@@ -84,10 +84,9 @@ int main()
 
 	//particle emitter test
 	ParticleEmitter emitter(100, 100, 1000, sf::Color::Red, 2.0f);
-	emitter.begin(10);
 
 	ParticleEmitter emitter2(60, 60, 100, sf::Color::Red, 1.0f);
-	emitter2.begin(2000);
+	emitter2.burst(200);
 
 
 	while (window.isOpen())

@@ -16,6 +16,10 @@ ParticleEmitter::ParticleEmitter(float xPos, float yPos, int intensity, sf::Colo
 
 	//set seed
 	srand(std::time(NULL));
+
+	//reserve space for the vector
+	int maxSize = (int)((mIntensity * mData.lifeTime) + 0.5);
+	mParticles.reserve(maxSize);
 }
 
 ParticleEmitter::~ParticleEmitter()
@@ -102,17 +106,14 @@ void ParticleEmitter::draw(Window& window, float timeDelta)
 	}
 }
 
-void ParticleEmitter::begin(int amount)
+void ParticleEmitter::burst(int amount)
 {
-	//TODO, this shouldn't have to be used to initalize the emitter.
-	/*
-	* To calculate the maximum number of particles needed for the vector to hold 
-	* we use the following formula:
-	* (Intensity * particle lifetime) + inital burst value + 0.5
-	*/
+	//resize the vector to hold more particles for the burst
 	int maxSize = (int)((mIntensity * mData.lifeTime) + amount + 0.5);
 	mParticles.reserve(maxSize);
 	addParticles(amount);
+
+	//TODO, need to add a way to bring the vector back down to normal size
 }
 
 void ParticleEmitter::updateParticles(float timeDelta)

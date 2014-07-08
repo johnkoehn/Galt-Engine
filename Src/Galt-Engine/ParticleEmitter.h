@@ -20,6 +20,7 @@ namespace GaltE
 		std::vector<Particle> mParticles;
 		float mExtraTime;
 		float mTotalTime;
+		bool started;
 
 		/**
 		* Method updates the particles position, removes particles that
@@ -48,10 +49,9 @@ namespace GaltE
 		~ParticleEmitter();
 
 		/**
-		* This starts the emitting of particles, pass in the amount of inital particles 
-		* to create.
+		* This creates a burst of particles
 		*/
-		void begin(int amount);
+		void burst(int amount);
 
 		/**
 		* Method updates the particles and then draw them to the screen

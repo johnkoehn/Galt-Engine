@@ -48,7 +48,7 @@
     <ClInclude Include="..\Src\Galt-Engine\Mouse.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\Src\Galt-Engine\Vector2i.h">
+    <ClInclude Include="..\Src\Galt-Engine\Point.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

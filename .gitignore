@@ -15,3 +15,7 @@ IDE/Obj/
 IDE/Galt Engine/vc120.idb
 *.idb
 Lib/Galt Engine-d.lib
+*.dll
+*.exp
+*.lib
+*.pch

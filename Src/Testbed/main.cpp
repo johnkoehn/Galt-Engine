@@ -116,6 +116,7 @@ int main()
 		}
 		emitter.draw(window, deltaT);
 		emitter2.draw(window, deltaT);
+		emitter.move(30 * deltaT, 30 * deltaT);
 		window.draw(shape1);
 		window.draw(shape2);
 		window.setCamera(camera1);

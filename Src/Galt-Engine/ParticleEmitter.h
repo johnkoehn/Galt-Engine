@@ -62,6 +62,11 @@ namespace GaltE
 		* Method sets the intensity of the emitter to zero
 		*/
 		void end() { mIntensity = 0; }
+
+		/**
+		* Moves the particle by the x and y value given
+		*/
+		void move(float deltaX, float deltaY);
 	};
 }
 

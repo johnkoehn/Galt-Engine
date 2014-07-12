@@ -81,7 +81,7 @@ void ParticleEmitter::addParticles(int particlesToAdd)
 				if (mParticles[iterator].isAlive() == false)
 				{
 					found = true;
-					mParticles[iterator].reset();
+					mParticles[iterator].reset(mData.xPos, mData.yPos);
 
 					//set new speed
 					float speed = (float) (50 + (rand() % 10));
@@ -125,4 +125,10 @@ void ParticleEmitter::updateParticles(float timeDelta)
 			mParticles[i].update(timeDelta);
 		}
 	}
+}
+
+void ParticleEmitter::move(float deltaX, float deltaY)
+{
+	mData.xPos += deltaX;
+	mData.yPos += deltaY;
 }

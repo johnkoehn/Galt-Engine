@@ -35,8 +35,6 @@ namespace GaltE
 		sf::VertexArray particle;
 		PhyVec<float>* position;
 		PhyVec<float>* velocity;
-		float originalX;
-		float originalY;
 		double mass;
 		bool alive;
 		float lifeTime;
@@ -63,15 +61,25 @@ namespace GaltE
 		void update(float timeDelta);
 
 		/**
+		* Changes the velocity of the particle
+		*/
+		void setVel(float x, float y);
+
+		/**
 		* Changes the particle's velocity x value
 		*/
 		void setVelX(float x) { velocity->x = x; }
 
 		/**
-		* changes the particle's velocity y value
+		* Changes the particle's velocity y value
 		*/
 		void setVelY(float y) { velocity->y = y; }
 
+		/**
+		* Change the position of the particle
+		*/
+		void setPos(float x, float y);
+		
 		/**
 		* Changes the particle's position x value
 		*/
@@ -171,7 +179,7 @@ namespace GaltE
 		/**
 		* Method resets the particle, having time start at zero again and the position return to the origin
 		*/
-		void reset();
+		void reset(float xPos, float yPos);
 
 	};
 

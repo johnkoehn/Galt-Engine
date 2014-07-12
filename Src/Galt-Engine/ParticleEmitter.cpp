@@ -132,3 +132,11 @@ void ParticleEmitter::move(float deltaX, float deltaY)
 	mData.xPos += deltaX;
 	mData.yPos += deltaY;
 }
+
+void ParticleEmitter::draw(Window& window)
+{
+	for (int i = 0; i < mParticles.size(); i++)
+	{
+		mParticles[i].drawParticle(window);
+	}
+}

@@ -19,6 +19,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Src\Galt-Engine\Camera.h" />
+    <ClInclude Include="..\Src\Galt-Engine\Input.h" />
     <ClInclude Include="..\Src\Galt-Engine\Point.h" />
     <ClInclude Include="..\Src\Galt-Engine\KeyInput.h" />
     <ClInclude Include="..\Src\Galt-Engine\Main.h" />

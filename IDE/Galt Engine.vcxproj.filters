@@ -51,6 +51,9 @@
     <ClInclude Include="..\Src\Galt-Engine\Point.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\Src\Galt-Engine\Input.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">

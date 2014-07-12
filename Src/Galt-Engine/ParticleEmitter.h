@@ -33,11 +33,6 @@ namespace GaltE
 		*/
 		void addParticles(int particlesToAdd);
 
-		/**
-		* Method updates the particles positions and removes "dead" particles
-		*/
-		void updateParticles(float timeDelta);
-
 	public:
 		/*
 		* Intensity if the amount of particles being emitted per second,
@@ -54,9 +49,19 @@ namespace GaltE
 		void burst(int amount);
 
 		/**
+		* Method updates the particles positions and removes "dead" particles
+		*/
+		void updateParticles(float timeDelta);
+
+		/**
 		* Method updates the particles and then draw them to the screen
 		*/
 		void draw(Window& window, float timeDelta);
+
+		/**
+		* Draws the particles to the screen
+		*/
+		void draw(Window& window);
 
 		/**
 		* Method sets the intensity of the emitter to zero

@@ -8,7 +8,7 @@
 #ifndef INPUT_H
 #define INPUT_H
 
-#define INPUTARRAYSIZE 512;
+const int ARRAYSIZE = 512;
 
 namespace GaltE
 {
@@ -150,9 +150,10 @@ namespace GaltE
 		sf::Event mEvent;
 		sf::Window *mWindow;
 
-		bool mKeysReleased[512];
-		bool mKeysPressed[512];
-		bool mKeysOld[512];
+		bool mKeysReleased[ARRAYSIZE];
+		bool mKeysPressed[ARRAYSIZE];
+		bool mKeysOld[ARRAYSIZE];
+		bool mInitilazied;
 
 		std::string mTextEntered;
 
@@ -166,7 +167,7 @@ namespace GaltE
 		/**
 		* Initalizes the input class
 		*/
-		bool init(const sf::Window &window);
+		bool init(sf::Window &window);
 
 		/**
 		* Gets latest input
@@ -191,9 +192,29 @@ namespace GaltE
 		Point<int> getGlobalMousePos();
 
 		/**
+		* Returns the x position of the mouse in global coordinates
+		*/
+		int getGlobalMouseX();
+
+		/**
+		* Returns the y position of the mouse in global coordinates
+		*/
+		int getGlobalMouseY();
+
+		/**
 		* Returns the position of the mouse in local coordinates (relative to the window)
 		*/
 		Point<int> getLocalMousePos();
+
+		/**
+		* Returns the x position of the mouse in local coordinates
+		*/
+		int getLocalMouseX();
+
+		/**
+		* Returns the y position of the mouse in local coordinates
+		*/
+		int getLocalMouseY();
 
 		/**
 		* Sets the mouse position in global coordinates

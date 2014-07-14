@@ -16,6 +16,10 @@ ParticleEmitter::ParticleEmitter(float xPos, float yPos, int intensity, sf::Colo
 
 	//set seed
 	srand(std::time(NULL));
+
+	//reserve space for the vector
+	int maxSize = (int)((mIntensity * mData.lifeTime) + 0.5);
+	mParticles.reserve(maxSize);
 }
 
 ParticleEmitter::~ParticleEmitter()
@@ -77,7 +81,7 @@ void ParticleEmitter::addParticles(int particlesToAdd)
 				if (mParticles[iterator].isAlive() == false)
 				{
 					found = true;
-					mParticles[iterator].reset();
+					mParticles[iterator].reset(mData.xPos, mData.yPos);
 
 					//set new speed
 					float speed = (float) (50 + (rand() % 10));
@@ -96,31 +100,54 @@ void ParticleEmitter::addParticles(int particlesToAdd)
 void ParticleEmitter::draw(Window& window, float timeDelta)
 {
 	update(timeDelta);
-	for (int i = 0; i < mParticles.size(); i++)
+	for (unsigned int i = 0; i < mParticles.size(); i++)
 	{
 		mParticles[i].drawParticle(window);
 	}
 }
 
-void ParticleEmitter::begin(int amount)
+void ParticleEmitter::burst(int amount)
 {
-	/*
-	* To calculate the maximum number of particles needed for the vector to hold 
-	* we use the following formula:
-	* (Intensity * particle lifetime) + inital burst value + 0.5
-	*/
+	//resize the vector to hold more particles for the burst
 	int maxSize = (int)((mIntensity * mData.lifeTime) + amount + 0.5);
 	mParticles.reserve(maxSize);
 	addParticles(amount);
+
+	//TODO, need to add a way to bring the vector back down to normal size
 }
 
 void ParticleEmitter::updateParticles(float timeDelta)
 {
-	for (int i = 0; i < mParticles.size(); i++)
+	for (unsigned int i = 0; i < mParticles.size(); i++)
 	{
 		if (mParticles[i].isAlive())
 		{
 			mParticles[i].update(timeDelta);
 		}
 	}
+}
+
+void ParticleEmitter::move(float deltaX, float deltaY)
+{
+	mData.xPos += deltaX;
+	mData.yPos += deltaY;
+}
+
+void ParticleEmitter::draw(Window& window)
+{
+	for (unsigned int i = 0; i < mParticles.size(); i++)
+	{
+		mParticles[i].drawParticle(window);
+	}
+}
+
+void ParticleEmitter::setPos(float x, float y)
+{
+	mData.xPos = x;
+	mData.yPos = y;
+}
+
+void ParticleEmitter::setPos(const Point<float>& point)
+{
+	setPos(point.x, point.y);
 }

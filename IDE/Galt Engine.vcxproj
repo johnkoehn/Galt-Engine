@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Src\Galt-Engine\Camera.cpp" />
+    <ClCompile Include="..\Src\Galt-Engine\Input.cpp" />
     <ClCompile Include="..\Src\Galt-Engine\Particle.cpp" />
     <ClCompile Include="..\Src\Galt-Engine\ParticleEmitter.cpp" />
     <ClCompile Include="..\Src\Galt-Engine\Timer.cpp" />
@@ -19,7 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Src\Galt-Engine\Camera.h" />
-    <ClInclude Include="..\Src\Galt-Engine\KeyInput.h" />
+    <ClInclude Include="..\Src\Galt-Engine\Input.h" />
+    <ClInclude Include="..\Src\Galt-Engine\Point.h" />
     <ClInclude Include="..\Src\Galt-Engine\Main.h" />
     <ClInclude Include="..\Src\Galt-Engine\Mouse.h" />
     <ClInclude Include="..\Src\Galt-Engine\Particle.h" />

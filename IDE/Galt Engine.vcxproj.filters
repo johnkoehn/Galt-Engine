@@ -10,11 +10,14 @@
     <ClCompile Include="..\Src\Galt-Engine\Timer.cpp">
       <Filter>CPP Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Src\Galt-Engine\Particle.cpp">
+    <ClCompile Include="..\Src\Galt-Engine\Input.cpp">
       <Filter>CPP Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Src\Galt-Engine\Particle.cpp">
+      <Filter>CPP Files\Particles</Filter>
+    </ClCompile>
     <ClCompile Include="..\Src\Galt-Engine\ParticleEmitter.cpp">
-      <Filter>CPP Files</Filter>
+      <Filter>CPP Files\Particles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -36,14 +39,17 @@
     <ClInclude Include="..\Src\Galt-Engine\Timer.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\Src\Galt-Engine\KeyInput.h">
+    <ClInclude Include="..\Src\Galt-Engine\Point.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\Src\Galt-Engine\Particle.h">
+    <ClInclude Include="..\Src\Galt-Engine\Input.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\Src\Galt-Engine\ParticleEmitter.h">
-      <Filter>Headers</Filter>
+      <Filter>Headers\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Src\Galt-Engine\Particle.h">
+      <Filter>Headers\Particles</Filter>
     </ClInclude>
     <ClInclude Include="..\Src\Galt-Engine\Mouse.h">
       <Filter>Headers</Filter>
@@ -55,6 +61,12 @@
     </Filter>
     <Filter Include="CPP Files">
       <UniqueIdentifier>{f2dfbb99-174d-42c2-8b0d-b156d0a66d5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Particles">
+      <UniqueIdentifier>{7cf34867-2c46-4483-bcf7-370e2be9d7a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CPP Files\Particles">
+      <UniqueIdentifier>{6aa4f7ce-89e1-46ff-887e-1f1758154291}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

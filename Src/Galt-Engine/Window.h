@@ -92,6 +92,7 @@ namespace GaltE
 		int getHeight()			{ return winHeight; }
 		std::string getName()	{ return winName;   }
 		bool isOpen()			{ return open;      }
+		sf::RenderWindow& getSFWindow() { return window; }
 		
 
 	};

@@ -10,3 +10,12 @@ IDE/Obj/
 *.exe
 *.pdb
 *ilk
+*.obj
+*.tlog
+IDE/Galt Engine/vc120.idb
+*.idb
+Lib/Galt Engine-d.lib
+*.dll
+*.exp
+*.lib
+*.pch

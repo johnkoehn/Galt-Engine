@@ -73,15 +73,21 @@ int main()
 	Timer time;
 	float deltaT = 0;
 
-	//Set up KeyInput
-	KeyInput keyInput;
+	//Particle design pratice
+	//Particle p1();
+	//Particle p2();
+	//p1 = p2;
+
 
 	//particle emitter test
 	ParticleEmitter emitter(100, 100, 1000, sf::Color::Red, 2.0f);
-	emitter.begin(10);
 
 	ParticleEmitter emitter2(60, 60, 100, sf::Color::Red, 1.0f);
-	emitter2.begin(2000);
+	emitter2.burst(200);
+
+	//create input stream
+	Input* input = new Input();
+	input->init(window.getSFWindow());
 
 
 	while (window.isOpen())
@@ -90,27 +96,45 @@ int main()
 
 		//get change in time
 		deltaT = time.restart();
-		std::cout << deltaT << std::endl;
+		//std::cout << deltaT << std::endl;
 
 		//check for keyboard input
-		if (keyInput.W())
+		input->update();
+		if (input->getKeyState(GK_W, KEY_DOWN))
 		{
 			camera1.move(0, -(yCMovement * deltaT));
 		}
-		if (keyInput.S())
+		if (input->getKeyState(GK_S, KEY_DOWN))
 		{
 			camera1.move(0, yCMovement * deltaT);
 		}
-		if (keyInput.A())
+		if (input->getKeyState(GK_A, KEY_DOWN))
 		{
 			camera1.move(-(xCMovement * deltaT), 0);
 		}
-		if (keyInput.D())
+		if (input->getKeyState(GK_D, KEY_DOWN))
 		{
 			camera1.move(xCMovement * deltaT, 0);
 		}
+		if (input->getKeyState(GK_Escape, KEY_DOWN))
+		{
+			window.exit();
+		}
+		if (input->getKeyState(GK_Q, KEY_RELEASED))
+		{
+			std::cout << "Global x:" << input->getGlobalMouseX() << "\n";
+			std::cout << "Global y:" << input->getGlobalMouseY() << "\n";
+			std::cout << "Local x:" << input->getLocalMouseX() << "\n";
+			std::cout << "Local y:" << input->getLocalMouseY() << "\n";
+		}
+		if (input->getButtonState(GMB_Left))
+		{
+			emitter.setPos((float)input->getLocalMouseX(), (float)input->getLocalMouseY());
+		}
+
 		emitter.draw(window, deltaT);
 		emitter2.draw(window, deltaT);
+		emitter.move(30 * deltaT, 30 * deltaT);
 		window.draw(shape1);
 		window.draw(shape2);
 		window.setCamera(camera1);

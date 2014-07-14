@@ -73,9 +73,6 @@ int main()
 	Timer time;
 	float deltaT = 0;
 
-	//Set up KeyInput
-	KeyInput keyInput;
-
 	//Particle design pratice
 	//Particle p1();
 	//Particle p2();
@@ -99,7 +96,7 @@ int main()
 
 		//get change in time
 		deltaT = time.restart();
-		std::cout << deltaT << std::endl;
+		//std::cout << deltaT << std::endl;
 
 		//check for keyboard input
 		input->update();
@@ -119,6 +116,22 @@ int main()
 		{
 			camera1.move(xCMovement * deltaT, 0);
 		}
+		if (input->getKeyState(GK_Escape, KEY_DOWN))
+		{
+			window.exit();
+		}
+		if (input->getKeyState(GK_Q, KEY_RELEASED))
+		{
+			std::cout << "Global x:" << input->getGlobalMouseX() << "\n";
+			std::cout << "Global y:" << input->getGlobalMouseY() << "\n";
+			std::cout << "Local x:" << input->getLocalMouseX() << "\n";
+			std::cout << "Local y:" << input->getLocalMouseY() << "\n";
+		}
+		if (input->getButtonState(GMB_Left))
+		{
+			emitter.setPos((float)input->getLocalMouseX(), (float)input->getLocalMouseY());
+		}
+
 		emitter.draw(window, deltaT);
 		emitter2.draw(window, deltaT);
 		emitter.move(30 * deltaT, 30 * deltaT);

@@ -95,26 +95,7 @@ bool Input::getKeyState(int key, KeyState state)
 
 bool Input::getButtonState(int button)
 {
-	switch (button)
-	{
-	case GMB_Left:
-		return sf::Mouse::isButtonPressed(sf::Mouse::Left);
-	
-	case GMB_Right:
-		return sf::Mouse::isButtonPressed(sf::Mouse::Right);
-
-	case GMB_Middle:
-		return sf::Mouse::isButtonPressed(sf::Mouse::Middle);
-
-	case GMB_LeftSide:
-		return sf::Mouse::isButtonPressed(sf::Mouse::XButton1);
-
-	case GMB_RightSide:
-		return sf::Mouse::isButtonPressed(sf::Mouse::XButton2);
-
-	default:
-		return false;
-	}
+	return (sf::Mouse::isButtonPressed(static_cast<sf::Mouse::Button>(button)) != 0);
 }
 
 int Input::getGlobalMouseX()

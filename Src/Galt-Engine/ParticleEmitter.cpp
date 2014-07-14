@@ -140,3 +140,14 @@ void ParticleEmitter::draw(Window& window)
 		mParticles[i].drawParticle(window);
 	}
 }
+
+void ParticleEmitter::setPos(float x, float y)
+{
+	mData.xPos = x;
+	mData.yPos = y;
+}
+
+void ParticleEmitter::setPos(const Point<float>& point)
+{
+	setPos(point.x, point.y);
+}

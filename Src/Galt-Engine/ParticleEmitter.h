@@ -72,6 +72,16 @@ namespace GaltE
 		* Moves the particle by the x and y value given
 		*/
 		void move(float deltaX, float deltaY);
+
+		/**
+		* Sets the particle emitter position by the given values
+		*/
+		void setPos(float x, float y);
+
+		/**
+		* Sets tha particle emitter position by the given point
+		*/
+		void setPos(const Point<float>& point);
 	};
 }
 

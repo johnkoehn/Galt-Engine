@@ -142,6 +142,9 @@ namespace GaltE
 
 	/**
 	* The class manages keyboard and mouse events by using sfml
+	* The class works by casting the sfml enum for key and mouse keys/buttons to integers. 
+	* This allows the user to easly pass what key/button they want checked. 
+	* static_cast is used to convert these ints back to the sfml enum for cases where sfml is used.
 	*/
 	class Input
 	{

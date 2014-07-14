@@ -71,3 +71,85 @@ void Input::update()
 		}
 	}
 }
+
+bool Input::getKeyState(int key, KeyState state)
+{
+	mWindow->pollEvent(mEvent);
+	switch (state)
+	{
+	case KEY_DOWN:
+		return (mEvent.key.code == key);
+	
+	case KEY_RELEASED:
+		return mKeysReleased[key];
+
+	case KEY_UP:
+		return !(mEvent.key.code == key);
+
+	case KEY_PRESSED:
+		return mKeysPressed[key];
+
+	default:
+		return false;
+	}
+}
+
+bool Input::getButtonState(int button)
+{
+	switch (button)
+	{
+	case GMB_Left:
+		return sf::Mouse::isButtonPressed(sf::Mouse::Left);
+	
+	case GMB_Right:
+		return sf::Mouse::isButtonPressed(sf::Mouse::Right);
+
+	case GMB_Middle:
+		return sf::Mouse::isButtonPressed(sf::Mouse::Middle);
+
+	case GMB_LeftSide:
+		return sf::Mouse::isButtonPressed(sf::Mouse::XButton1);
+
+	case GMB_RightSide:
+		return sf::Mouse::isButtonPressed(sf::Mouse::XButton2);
+
+	default:
+		break;
+	}
+}
+
+int Input::getGlobalMouseX()
+{
+	sf::Vector2i position = sf::Mouse::getPosition();
+	return position.x;
+}
+
+int Input::getGlobalMouseY()
+{
+	sf::Vector2i position = sf::Mouse::getPosition();
+	return position.y;
+}
+
+Point<int> Input::getGlobalMousePos()
+{
+	sf::Vector2i position = sf::Mouse::getPosition();
+	return Point<int>(position.x, position.y);
+}
+
+int Input::getLocalMouseX()
+{
+	sf::Vector2i position = sf::Mouse::getPosition(*mWindow);
+	return position.x;
+}
+
+int Input::getLocalMouseY()
+{
+	sf::Vector2i position = sf::Mouse::getPosition(*mWindow);
+	return position.y;
+}
+
+Point<int> Input::getLocalMousePos()
+{
+	sf::Vector2i position = sf::Mouse::getPosition(*mWindow);
+	return Point<int>(position.x, position.y);
+}

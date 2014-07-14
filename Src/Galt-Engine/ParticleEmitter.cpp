@@ -100,7 +100,7 @@ void ParticleEmitter::addParticles(int particlesToAdd)
 void ParticleEmitter::draw(Window& window, float timeDelta)
 {
 	update(timeDelta);
-	for (int i = 0; i < mParticles.size(); i++)
+	for (unsigned int i = 0; i < mParticles.size(); i++)
 	{
 		mParticles[i].drawParticle(window);
 	}
@@ -118,7 +118,7 @@ void ParticleEmitter::burst(int amount)
 
 void ParticleEmitter::updateParticles(float timeDelta)
 {
-	for (int i = 0; i < mParticles.size(); i++)
+	for (unsigned int i = 0; i < mParticles.size(); i++)
 	{
 		if (mParticles[i].isAlive())
 		{
@@ -135,7 +135,7 @@ void ParticleEmitter::move(float deltaX, float deltaY)
 
 void ParticleEmitter::draw(Window& window)
 {
-	for (int i = 0; i < mParticles.size(); i++)
+	for (unsigned int i = 0; i < mParticles.size(); i++)
 	{
 		mParticles[i].drawParticle(window);
 	}

@@ -88,6 +88,10 @@ int main()
 	ParticleEmitter emitter2(60, 60, 100, sf::Color::Red, 1.0f);
 	emitter2.burst(200);
 
+	//create input stream
+	Input* input = new Input();
+	input->init(window.getSFWindow());
+
 
 	while (window.isOpen())
 	{
@@ -98,7 +102,8 @@ int main()
 		std::cout << deltaT << std::endl;
 
 		//check for keyboard input
-		if (keyInput.W())
+		input->update();
+		if (input->getKeyState(GK_W, KEY_DOWN))
 		{
 			camera1.move(0, -(yCMovement * deltaT));
 		}

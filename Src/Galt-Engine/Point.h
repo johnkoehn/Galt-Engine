@@ -13,6 +13,15 @@ namespace GaltE
 	public:
 		Type x;
 		Type y;
+
+		/**
+		* Give the x and y value to create the point object
+		*/
+		Point(Type xVal, Type yVal)
+		{
+			x = xVal;
+			y = yVal;
+		}
 	};
 }
 

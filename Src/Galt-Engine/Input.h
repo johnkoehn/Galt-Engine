@@ -126,7 +126,7 @@ namespace GaltE
 	//mouse buttons
 	const int GMB_Left = sf::Mouse::Left;
 	const int GMB_Right = sf::Mouse::Right;
-	const int GMB_Center = sf::Mouse::Middle;
+	const int GMB_Middle = sf::Mouse::Middle;
 	const int GMB_LeftSide = sf::Mouse::XButton1;
 	const int GMB_RightSide = sf::Mouse::XButton2;
 

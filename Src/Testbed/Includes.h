@@ -5,4 +5,5 @@
 #include "..\Galt-Engine\KeyInput.h"
 #include "..\Galt-Engine\Particle.h"
 #include "..\Galt-Engine\ParticleEmitter.h"
+#include "..\Galt-Engine\Input.h"
 #include <ctime>

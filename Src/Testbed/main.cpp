@@ -107,15 +107,15 @@ int main()
 		{
 			camera1.move(0, -(yCMovement * deltaT));
 		}
-		if (keyInput.S())
+		if (input->getKeyState(GK_S, KEY_DOWN))
 		{
 			camera1.move(0, yCMovement * deltaT);
 		}
-		if (keyInput.A())
+		if (input->getKeyState(GK_A, KEY_DOWN))
 		{
 			camera1.move(-(xCMovement * deltaT), 0);
 		}
-		if (keyInput.D())
+		if (input->getKeyState(GK_D, KEY_DOWN))
 		{
 			camera1.move(xCMovement * deltaT, 0);
 		}

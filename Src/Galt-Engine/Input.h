@@ -12,7 +12,6 @@ const int ARRAYSIZE = 512;
 
 namespace GaltE
 {
-	#define Key sf::Keyboard;
 	typedef sf::Mouse::Button BUTTON;
 
 	//mainboard letters

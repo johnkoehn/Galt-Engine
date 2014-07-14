@@ -74,17 +74,16 @@ void Input::update()
 
 bool Input::getKeyState(int key, KeyState state)
 {
-	mWindow->pollEvent(mEvent);
 	switch (state)
 	{
 	case KEY_DOWN:
-		return (mEvent.key.code == key);
+		return (sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Key>(key))); 
 	
 	case KEY_RELEASED:
 		return mKeysReleased[key];
 
 	case KEY_UP:
-		return !(mEvent.key.code == key);
+		return !(sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Key>(key)));
 
 	case KEY_PRESSED:
 		return mKeysPressed[key];
@@ -114,7 +113,7 @@ bool Input::getButtonState(int button)
 		return sf::Mouse::isButtonPressed(sf::Mouse::XButton2);
 
 	default:
-		break;
+		return false;
 	}
 }
 

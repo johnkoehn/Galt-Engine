@@ -19,6 +19,9 @@
     <ClCompile Include="..\Src\Galt-Engine\ParticleEmitter.cpp">
       <Filter>CPP Files\Particles</Filter>
     </ClCompile>
+    <ClCompile Include="..\Src\Galt-Engine\Texture.cpp">
+      <Filter>CPP Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Src\Galt-Engine\Camera.h">
@@ -52,6 +55,9 @@
       <Filter>Headers\Particles</Filter>
     </ClInclude>
     <ClInclude Include="..\Src\Galt-Engine\Mouse.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Src\Galt-Engine\Texture.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

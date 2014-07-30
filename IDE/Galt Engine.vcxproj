@@ -28,6 +28,7 @@
     <ClInclude Include="..\Src\Galt-Engine\Particle.h" />
     <ClInclude Include="..\Src\Galt-Engine\ParticleEmitter.h" />
     <ClInclude Include="..\Src\Galt-Engine\Texture.h" />
+    <ClInclude Include="..\Src\Galt-Engine\TextureManager.h" />
     <ClInclude Include="..\Src\Galt-Engine\Timer.h" />
     <ClInclude Include="..\Src\Galt-Engine\Utility.h" />
     <ClInclude Include="..\Src\Galt-Engine\PhyVec.h" />

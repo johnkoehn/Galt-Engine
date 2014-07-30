@@ -16,7 +16,7 @@ namespace GaltE
 
 	public:
 		/**
-		* Default constructor
+		* Defualt constructor 
 		*/
 		Texture();
 

@@ -60,6 +60,9 @@
     <ClInclude Include="..\Src\Galt-Engine\Texture.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\Src\Galt-Engine\TextureManager.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">

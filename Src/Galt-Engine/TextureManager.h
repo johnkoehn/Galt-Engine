@@ -9,7 +9,8 @@ namespace GaltE
 	/**
 	* Manages all textures. Can read a file in the proper format to add textures
 	* or can add them one by one. Texture manager works by giving each texture it reads and id
-	* the id is given by the placement in the vector space. 
+	* the id is given by the placement in the vector space. Thus, the first texture added to the vector, has an id of 1,
+	* the second 2 and so forth.
 	*/
 	class TextureManager
 	{
@@ -18,7 +19,7 @@ namespace GaltE
 
 	public:
 		/**
-		* Defualt construtor
+		* Creates the texture manager object
 		*/
 		TextureManager();
 
@@ -33,7 +34,12 @@ namespace GaltE
 		/**
 		* Method adds a texture, returns true if the file was found and it succeded, otherwise false
 		*/
-		bool addTexture(std::string fileName);
+		bool addTexture(std::string textureFile);
+
+		/**
+		* Returns the address to the texture after being found
+		*/
+		Texture& getTexture(int textureID);
 	};
 }
 

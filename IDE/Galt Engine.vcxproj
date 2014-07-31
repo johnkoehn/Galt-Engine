@@ -16,6 +16,7 @@
     <ClCompile Include="..\Src\Galt-Engine\Particle.cpp" />
     <ClCompile Include="..\Src\Galt-Engine\ParticleEmitter.cpp" />
     <ClCompile Include="..\Src\Galt-Engine\Texture.cpp" />
+    <ClCompile Include="..\Src\Galt-Engine\TextureManager.cpp" />
     <ClCompile Include="..\Src\Galt-Engine\Timer.cpp" />
     <ClCompile Include="..\Src\Galt-Engine\Window.cpp" />
   </ItemGroup>
